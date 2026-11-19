@@ -109,7 +109,8 @@
 
                 <div class="space-y-1">
                     <label class="text-xs font-bold text-slate-700">Urutan Tampil (#)</label>
-                    <input type="number" name="order_index" value="{{ old('order_index', 0) }}" class="w-full px-4 py-2.5 rounded-xl text-xs bg-slate-50 border border-slate-200">
+                    <input type="number" name="order_index" value="{{ old('order_index', $nextOrder ?? 1) }}" class="w-full px-4 py-2.5 rounded-xl text-xs bg-slate-50 border border-slate-200 focus:outline-none focus:ring-2 focus:ring-sky-500 focus:bg-white">
+                    <p class="text-[10px] text-slate-400">Otomatis diisi urutan berikutnya. Angka lebih kecil tampil paling depan (Kaprodi disarankan urutan 1).</p>
                 </div>
 
                 <div class="pb-2">

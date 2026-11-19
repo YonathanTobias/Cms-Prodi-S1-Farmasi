@@ -40,7 +40,8 @@ class TeamMemberController extends Controller
 
     public function create()
     {
-        return view('admin.team.create');
+        $nextOrder = (TeamMember::max('order_index') ?? 0) + 1;
+        return view('admin.team.create', compact('nextOrder'));
     }
 
     public function store(Request $request)
@@ -65,7 +66,12 @@ class TeamMemberController extends Controller
             $validated['photo'] = \App\Services\ImageService::uploadAndOptimize($request->file('photo'), 'team', 800, 85);
         }
 
-        $validated['order_index'] = $request->input('order_index', 0);
+        if (!$request->filled('order_index') || $request->input('order_index') === null) {
+            $validated['order_index'] = (TeamMember::max('order_index') ?? 0) + 1;
+        } else {
+            $validated['order_index'] = (int) $request->input('order_index');
+        }
+
         $validated['is_active'] = $request->has('is_active') ? (bool)$request->is_active : true;
 
         TeamMember::create($validated);
