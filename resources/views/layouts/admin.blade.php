@@ -238,9 +238,9 @@
                         <span class="absolute left-0 top-2 bottom-2 w-1 rounded-r-full bg-white"></span>
                     @endif
                     <div class="w-7 h-7 rounded-lg flex items-center justify-center mr-2.5 transition {{ request()->routeIs('admin.team*') ? 'bg-white/20 text-white' : 'bg-slate-800 text-slate-400 group-hover:text-white group-hover:bg-slate-700/80' }}">
-                        <i class="fa-solid fa-sitemap text-xs"></i>
+                        <i class="fa-solid fa-user-doctor text-xs"></i>
                     </div>
-                    <span>Struktur Organisasi</span>
+                    <span>Dosen & Tendik</span>
                 </a>
 
                 <a href="{{ route('admin.messages.index') }}" class="group relative flex items-center justify-between px-3 py-2 rounded-xl text-xs font-semibold transition-all duration-150 {{ request()->routeIs('admin.messages*') ? 'bg-theme-primary text-white font-bold shadow-lg shadow-theme-primary/25' : 'text-slate-400 hover:text-white hover:bg-slate-800/80 hover:translate-x-0.5' }}">

@@ -9,10 +9,33 @@ use Illuminate\Support\Facades\Storage;
 
 class TeamMemberController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $members = TeamMember::orderBy('order_index', 'asc')->get();
-        return view('admin.team.index', compact('members'));
+        $query = TeamMember::query();
+
+        // Filter tipe (dosen / tendik)
+        if ($request->filled('type') && in_array($request->type, ['dosen', 'tendik'])) {
+            $query->where('type', $request->type);
+        }
+
+        // Pencarian nama, NIDN/NIP, atau keahlian
+        if ($request->filled('search')) {
+            $search = $request->search;
+            $query->where(function ($q) use ($search) {
+                $q->where('name', 'like', "%{$search}%")
+                  ->orWhere('identifier', 'like', "%{$search}%")
+                  ->orWhere('position', 'like', "%{$search}%")
+                  ->orWhere('expertise', 'like', "%{$search}%");
+            });
+        }
+
+        $members = $query->orderBy('order_index', 'asc')->orderBy('id', 'asc')->get();
+
+        $totalMembers = TeamMember::count();
+        $totalDosen = TeamMember::where('type', 'dosen')->count();
+        $totalTendik = TeamMember::where('type', 'tendik')->count();
+
+        return view('admin.team.index', compact('members', 'totalMembers', 'totalDosen', 'totalTendik'));
     }
 
     public function create()
@@ -27,11 +50,15 @@ class TeamMemberController extends Controller
             'title_degree' => 'nullable|string|max:100',
             'identifier' => 'nullable|string|max:100',
             'position' => 'required|string|max:150',
+            'type' => 'required|in:dosen,tendik',
+            'expertise' => 'nullable|string|max:255',
+            'academic_rank' => 'nullable|string|max:100',
             'photo' => 'nullable|image|max:2048',
             'bio' => 'nullable|string',
             'email' => 'nullable|email|max:100',
             'phone' => 'nullable|string|max:30',
             'order_index' => 'nullable|integer',
+            'is_active' => 'nullable|boolean',
         ]);
 
         if ($request->hasFile('photo')) {
@@ -39,9 +66,11 @@ class TeamMemberController extends Controller
         }
 
         $validated['order_index'] = $request->input('order_index', 0);
+        $validated['is_active'] = $request->has('is_active') ? (bool)$request->is_active : true;
+
         TeamMember::create($validated);
 
-        return redirect()->route('admin.team.index')->with('success', 'Anggota/Pengurus berhasil ditambahkan.');
+        return redirect()->route('admin.team.index')->with('success', 'Data Dosen / Tendik berhasil ditambahkan.');
     }
 
     public function edit(TeamMember $team)
@@ -56,11 +85,15 @@ class TeamMemberController extends Controller
             'title_degree' => 'nullable|string|max:100',
             'identifier' => 'nullable|string|max:100',
             'position' => 'required|string|max:150',
+            'type' => 'required|in:dosen,tendik',
+            'expertise' => 'nullable|string|max:255',
+            'academic_rank' => 'nullable|string|max:100',
             'photo' => 'nullable|image|max:2048',
             'bio' => 'nullable|string',
             'email' => 'nullable|email|max:100',
             'phone' => 'nullable|string|max:30',
             'order_index' => 'nullable|integer',
+            'is_active' => 'nullable|boolean',
         ]);
 
         if ($request->hasFile('photo')) {
@@ -71,9 +104,11 @@ class TeamMemberController extends Controller
         }
 
         $validated['order_index'] = $request->input('order_index', 0);
+        $validated['is_active'] = $request->has('is_active') ? (bool)$request->is_active : false;
+
         $team->update($validated);
 
-        return redirect()->route('admin.team.index')->with('success', 'Data anggota/pengurus berhasil diperbarui.');
+        return redirect()->route('admin.team.index')->with('success', 'Data Dosen / Tendik berhasil diperbarui.');
     }
 
     public function destroy(TeamMember $team)
@@ -83,7 +118,7 @@ class TeamMemberController extends Controller
         }
         $team->delete();
 
-        return back()->with('success', 'Anggota/Pengurus berhasil dihapus.');
+        return back()->with('success', 'Data personil berhasil dihapus.');
     }
 
     /**

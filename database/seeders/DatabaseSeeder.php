@@ -249,10 +249,14 @@ class DatabaseSeeder extends Seeder
                 'title_degree' => 'M.Kep., Sp.Kep.MB',
                 'identifier' => 'NIDN. 0712058501',
                 'position' => 'Ketua Program Studi S1 Keperawatan & Ners',
+                'type' => 'dosen',
+                'expertise' => 'Keperawatan Medikal Bedah & Luka Modern',
+                'academic_rank' => 'Lektor',
                 'bio' => 'Dosen Keperawatan Medikal Bedah dengan spesialisasi keperawatan kardiovaskuler dan manajemen perawatan luka modern.',
                 'email' => 'maria.magdalena@pantiwaluya.ac.id',
                 'phone' => '081234567891',
                 'order_index' => 1,
+                'is_active' => true,
             ]
         );
 
@@ -262,10 +266,14 @@ class DatabaseSeeder extends Seeder
                 'title_degree' => 'M.Kep., Sp.Kep.Kom',
                 'identifier' => 'NIDN. 0725088902',
                 'position' => 'Sekretaris Prodi & Koordinator Profesi Ners',
+                'type' => 'dosen',
+                'expertise' => 'Keperawatan Komunitas & Promosi Kesehatan',
+                'academic_rank' => 'Lektor',
                 'bio' => 'Dosen Keperawatan Komunitas dengan fokus penelitian promosi kesehatan masyarakat dan manajemen fasilitas kesehatan primer.',
                 'email' => 'yohanes.berchmans@pantiwaluya.ac.id',
                 'phone' => '081234567892',
                 'order_index' => 2,
+                'is_active' => true,
             ]
         );
 
@@ -275,10 +283,14 @@ class DatabaseSeeder extends Seeder
                 'title_degree' => 'M.Kep., Sp.Kep.An',
                 'identifier' => 'NIDN. 0718109003',
                 'position' => 'Koordinator Akademik Tahap Sarjana',
+                'type' => 'dosen',
+                'expertise' => 'Keperawatan Anak & Pediatrik Neonatus',
+                'academic_rank' => 'Asisten Ahli',
                 'bio' => 'Dosen Keperawatan Anak dengan keahlian asuhan keperawatan neonatus, pediatrik, dan stimulasi tumbuh kembang balita.',
                 'email' => 'theresia.avila@pantiwaluya.ac.id',
                 'phone' => '081234567893',
                 'order_index' => 3,
+                'is_active' => true,
             ]
         );
 
@@ -288,10 +300,48 @@ class DatabaseSeeder extends Seeder
                 'title_degree' => 'M.Kes.',
                 'identifier' => 'NIDN. 0709048704',
                 'position' => 'Koordinator Laboratorium Keperawatan & OSCE',
+                'type' => 'dosen',
+                'expertise' => 'Gawat Darurat, Kritis & BTCLS',
+                'academic_rank' => 'Asisten Ahli',
                 'bio' => 'Dosen Keperawatan Gawat Darurat dan Kritis dengan sertifikasi instruktur BTCLS dan simulasi kebencanaan.',
                 'email' => 'fransiskus.xaverius@pantiwaluya.ac.id',
                 'phone' => '081234567894',
                 'order_index' => 4,
+                'is_active' => true,
+            ]
+        );
+
+        TeamMember::updateOrCreate(
+            ['name' => 'Ns. Elisabeth Dwi, M.Kep., Sp.Kep.Mat'],
+            [
+                'title_degree' => 'M.Kep., Sp.Kep.Mat',
+                'identifier' => 'NIDN. 0714028805',
+                'position' => 'Dosen Keperawatan Maternitas',
+                'type' => 'dosen',
+                'expertise' => 'Keperawatan Maternitas & Safe Motherhood',
+                'academic_rank' => 'Asisten Ahli',
+                'bio' => 'Fokus pengajaran dan riset pada kesehatan reproduksi wanita, antenatal care komprehensif, dan pendampingan persalinan.',
+                'email' => 'elisabeth.dwi@pantiwaluya.ac.id',
+                'phone' => '081234567896',
+                'order_index' => 5,
+                'is_active' => true,
+            ]
+        );
+
+        TeamMember::updateOrCreate(
+            ['name' => 'Ns. Petrus Kanisius, M.Kep., Sp.Kep.J'],
+            [
+                'title_degree' => 'M.Kep., Sp.Kep.J',
+                'identifier' => 'NIDN. 0722079106',
+                'position' => 'Dosen Keperawatan Jiwa & Psikososial',
+                'type' => 'dosen',
+                'expertise' => 'Keperawatan Jiwa & Konseling Klinis',
+                'academic_rank' => 'Tenaga Pengajar',
+                'bio' => 'Penggiat kesehatan jiwa komunitas, terapi modalitas, dan penanganan stres pada mahasiswa dan keluarga.',
+                'email' => 'petrus.kanisius@pantiwaluya.ac.id',
+                'phone' => '081234567897',
+                'order_index' => 6,
+                'is_active' => true,
             ]
         );
 
@@ -301,10 +351,31 @@ class DatabaseSeeder extends Seeder
                 'title_degree' => 'S.Kom.',
                 'identifier' => 'NIP. 202109004',
                 'position' => 'Staf Administrasi & Tata Usaha Prodi',
+                'type' => 'tendik',
+                'expertise' => 'Administrasi Akademik & Pengelolaan Sistem Informasi',
+                'academic_rank' => 'Pengadministrasi Akademik',
                 'bio' => 'Pengelola sistem informasi akademik prodi, administrasi persuratan, dan pelayanan berkas mahasiswa.',
                 'email' => 'antonius.joko@pantiwaluya.ac.id',
                 'phone' => '081234567895',
-                'order_index' => 5,
+                'order_index' => 7,
+                'is_active' => true,
+            ]
+        );
+
+        TeamMember::updateOrCreate(
+            ['name' => 'Siti Rahayu, A.Md.Kes.'],
+            [
+                'title_degree' => 'A.Md.Kes.',
+                'identifier' => 'NIP. 202201012',
+                'position' => 'Pranata Laboratorium Pendidikan (Laboran Keperawatan)',
+                'type' => 'tendik',
+                'expertise' => 'Manajemen Alat Medis Lab, OSCE Center & Praktikum',
+                'academic_rank' => 'Laboran Keperawatan',
+                'bio' => 'Pengelola sarana dan prasarana laboratorium skill keperawatan, manekin phantom, dan logistik praktikum klinik.',
+                'email' => 'siti.rahayu@pantiwaluya.ac.id',
+                'phone' => '081234567898',
+                'order_index' => 8,
+                'is_active' => true,
             ]
         );
 
@@ -404,12 +475,13 @@ class DatabaseSeeder extends Seeder
         $defaultMenus = [
             ['label' => 'Beranda', 'url' => '/', 'target' => '_self', 'order_index' => 1, 'is_active' => true],
             ['label' => 'Profil Prodi', 'url' => '/profil', 'target' => '_self', 'order_index' => 2, 'is_active' => true],
-            ['label' => 'Layanan Akademik', 'url' => '/layanan', 'target' => '_self', 'order_index' => 3, 'is_active' => true],
-            ['label' => 'Berita & Informasi', 'url' => '/berita', 'target' => '_self', 'order_index' => 4, 'is_active' => true],
-            ['label' => 'Agenda Kegiatan', 'url' => '/agenda', 'target' => '_self', 'order_index' => 5, 'is_active' => true],
-            ['label' => 'Pusat Unduhan', 'url' => '/unduhan', 'target' => '_self', 'order_index' => 6, 'is_active' => true],
-            ['label' => 'Galeri Foto', 'url' => '/galeri', 'target' => '_self', 'order_index' => 7, 'is_active' => true],
-            ['label' => 'Kontak Kami', 'url' => '/kontak', 'target' => '_self', 'order_index' => 8, 'is_active' => true],
+            ['label' => 'Dosen & Tendik', 'url' => '/dosen-tendik', 'target' => '_self', 'order_index' => 3, 'is_active' => true],
+            ['label' => 'Layanan Akademik', 'url' => '/layanan', 'target' => '_self', 'order_index' => 4, 'is_active' => true],
+            ['label' => 'Berita & Informasi', 'url' => '/berita', 'target' => '_self', 'order_index' => 5, 'is_active' => true],
+            ['label' => 'Agenda Kegiatan', 'url' => '/agenda', 'target' => '_self', 'order_index' => 6, 'is_active' => true],
+            ['label' => 'Pusat Unduhan', 'url' => '/unduhan', 'target' => '_self', 'order_index' => 7, 'is_active' => true],
+            ['label' => 'Galeri Foto', 'url' => '/galeri', 'target' => '_self', 'order_index' => 8, 'is_active' => true],
+            ['label' => 'Kontak Kami', 'url' => '/kontak', 'target' => '_self', 'order_index' => 9, 'is_active' => true],
         ];
 
         foreach ($defaultMenus as $menu) {

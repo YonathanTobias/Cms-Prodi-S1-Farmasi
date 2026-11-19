@@ -25,6 +25,8 @@ use Illuminate\Support\Facades\Route;
 */
 Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/profil', [HomeController::class, 'profile'])->name('profile');
+Route::get('/dosen-tendik', [HomeController::class, 'dosenTendik'])->name('dosen-tendik');
+Route::get('/dosen', [HomeController::class, 'dosenTendik'])->name('dosen');
 
 // Services (Layanan Divisi)
 Route::get('/layanan', [HomeController::class, 'services'])->name('services');

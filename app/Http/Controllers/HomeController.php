@@ -48,8 +48,42 @@ class HomeController extends Controller
      */
     public function profile()
     {
-        $teamMembers = TeamMember::orderBy('order_index', 'asc')->get();
+        $teamMembers = TeamMember::active()->ordered()->get();
         return view('frontend.profile', compact('teamMembers'));
+    }
+
+    /**
+     * Dosen & Tenaga Kependidikan (Tendik) Page
+     */
+    public function dosenTendik(Request $request)
+    {
+        $query = TeamMember::active();
+
+        // Filter tab: 'all', 'dosen', 'tendik'
+        $type = $request->query('type', 'all');
+        if (in_array($type, ['dosen', 'tendik'])) {
+            $query->where('type', $type);
+        }
+
+        // Search query
+        if ($request->filled('q')) {
+            $search = $request->query('q');
+            $query->where(function ($q) use ($search) {
+                $q->where('name', 'like', "%{$search}%")
+                  ->orWhere('identifier', 'like', "%{$search}%")
+                  ->orWhere('position', 'like', "%{$search}%")
+                  ->orWhere('expertise', 'like', "%{$search}%")
+                  ->orWhere('academic_rank', 'like', "%{$search}%")
+                  ->orWhere('bio', 'like', "%{$search}%");
+            });
+        }
+
+        $members = $query->ordered()->get();
+        $totalAll = TeamMember::active()->count();
+        $totalDosen = TeamMember::active()->dosen()->count();
+        $totalTendik = TeamMember::active()->tendik()->count();
+
+        return view('frontend.dosen.index', compact('members', 'totalAll', 'totalDosen', 'totalTendik', 'type'));
     }
 
     /**

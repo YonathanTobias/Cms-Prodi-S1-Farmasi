@@ -797,14 +797,12 @@
         @endif
 
         <div class="text-center mt-10 flex flex-wrap justify-center gap-3">
-            <a href="{{ route('profile') }}#struktur" class="inline-flex items-center px-6 py-3 rounded-xl bg-theme-primary text-white font-bold text-xs uppercase tracking-wider shadow hover:opacity-90 transition">
-                Lihat Seluruh Personil <i class="fa-solid fa-arrow-right ml-2 text-xs"></i>
+            <a href="{{ route('dosen-tendik') }}" class="inline-flex items-center px-6 py-3 rounded-xl bg-theme-primary text-white font-bold text-xs uppercase tracking-wider shadow hover:opacity-90 transition">
+                Lihat Seluruh Dosen & Tendik <i class="fa-solid fa-arrow-right ml-2 text-xs"></i>
             </a>
-            @if(get_setting('organization_chart_image'))
-            <a href="{{ route('profile') }}#struktur" class="inline-flex items-center px-5 py-3 rounded-xl bg-slate-100 border border-slate-300 font-bold text-xs text-slate-700 hover:bg-slate-200 shadow-sm transition">
-                <i class="fa-solid fa-diagram-project mr-2 text-theme-primary"></i> Buka Bagan Diagram
+            <a href="{{ route('profile') }}#struktur" class="inline-flex items-center px-5 py-3 rounded-xl bg-slate-100 dark:bg-slate-800 border border-slate-300 dark:border-slate-700 font-bold text-xs text-slate-700 dark:text-slate-200 hover:bg-slate-200 dark:hover:bg-slate-700 shadow-sm transition">
+                <i class="fa-solid fa-sitemap mr-2 text-theme-primary"></i> Bagan Struktur Organisasi
             </a>
-            @endif
         </div>
     </div>
 </section>

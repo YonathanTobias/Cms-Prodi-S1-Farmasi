@@ -160,6 +160,12 @@
                     </div>
                     @endforelse
                 </div>
+
+                <div class="text-center pt-4">
+                    <a href="{{ route('dosen-tendik') }}" class="inline-flex items-center px-6 py-3 rounded-xl bg-theme-primary text-white font-bold text-xs uppercase tracking-wider shadow hover:opacity-90 transition">
+                        <i class="fa-solid fa-users-line mr-2"></i> Buka Halaman Lengkap Profil Dosen & Tendik <i class="fa-solid fa-arrow-right ml-2 text-xs"></i>
+                    </a>
+                </div>
             </div>
         @endif
 

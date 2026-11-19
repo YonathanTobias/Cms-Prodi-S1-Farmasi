@@ -25,8 +25,9 @@ class MenuController extends Controller
 
         $predefinedRoutes = [
             ['label' => 'Beranda', 'url' => '/'],
-            ['label' => 'Tentang Kami', 'url' => '/profil'],
-            ['label' => 'Layanan Divisi', 'url' => '/layanan'],
+            ['label' => 'Profil Prodi', 'url' => '/profil'],
+            ['label' => 'Dosen & Tendik', 'url' => '/dosen-tendik'],
+            ['label' => 'Layanan Akademik', 'url' => '/layanan'],
             ['label' => 'Berita & Pengumuman', 'url' => '/berita'],
             ['label' => 'Agenda Kegiatan', 'url' => '/agenda'],
             ['label' => 'Dokumen & Unduhan', 'url' => '/unduhan'],
@@ -74,8 +75,9 @@ class MenuController extends Controller
 
         $predefinedRoutes = [
             ['label' => 'Beranda', 'url' => '/'],
-            ['label' => 'Tentang Kami', 'url' => '/profil'],
-            ['label' => 'Layanan Divisi', 'url' => '/layanan'],
+            ['label' => 'Profil Prodi', 'url' => '/profil'],
+            ['label' => 'Dosen & Tendik', 'url' => '/dosen-tendik'],
+            ['label' => 'Layanan Akademik', 'url' => '/layanan'],
             ['label' => 'Berita & Pengumuman', 'url' => '/berita'],
             ['label' => 'Agenda Kegiatan', 'url' => '/agenda'],
             ['label' => 'Dokumen & Unduhan', 'url' => '/unduhan'],
