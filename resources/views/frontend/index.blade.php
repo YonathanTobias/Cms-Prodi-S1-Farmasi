@@ -383,36 +383,75 @@
                 </div>
             </div>
         </div>
-                    <a href="{{ route('profile') }}" class="text-xs font-bold text-theme-primary hover:underline flex items-center">
-                        Lihat Struktur Dosen & Kurikulum Lengkap <i class="fa-solid fa-arrow-right ml-1.5 text-[10px]"></i>
-                    </a>
-                </div>
-            </div>
-        </div>
 
         <!-- Profil Lulusan / Kompetensi Unggulan Card -->
         @if(get_setting('prodi_graduate_profile'))
-        <div class="bg-gradient-to-r from-slate-900 via-slate-800 to-slate-900 rounded-3xl p-6 sm:p-8 text-white shadow-lg border border-slate-700/60">
-            <div class="flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
-                <div class="space-y-2 max-w-2xl">
-                    <div class="inline-flex items-center space-x-2 bg-white/10 px-3 py-1 rounded-full text-xs font-semibold uppercase text-amber-400">
+        <div class="bg-slate-900/90 dark:bg-slate-900 rounded-3xl p-6 sm:p-8 text-white shadow-xl border border-slate-800 dark:border-slate-700/80 mt-8">
+            <div class="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-6 pb-6 border-b border-slate-800 dark:border-slate-800">
+                <div class="space-y-2 max-w-3xl">
+                    <div class="inline-flex items-center space-x-2 bg-amber-500/10 text-amber-400 border border-amber-500/20 px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider">
                         <i class="fa-solid fa-user-graduate"></i>
                         <span>Profil Lulusan Utama</span>
                     </div>
-                    <h3 class="text-lg sm:text-xl font-extrabold text-white">Prospek & Peran Lulusan</h3>
-                    <p class="text-xs sm:text-sm text-slate-300 leading-relaxed">
+                    <h3 class="text-xl sm:text-2xl font-extrabold text-white">Prospek & Peran Lulusan Ners</h3>
+                    <p class="text-xs sm:text-sm text-slate-300 leading-relaxed font-normal">
                         {{ get_setting('prodi_graduate_profile') }}
                     </p>
                 </div>
                 @if(get_setting('enable_services', '1') !== '0')
-                <a href="{{ route('services') }}" class="px-6 py-3 rounded-xl bg-white text-slate-950 font-bold text-xs uppercase tracking-wider shadow hover:bg-slate-100 transition flex-shrink-0 flex items-center">
-                    <i class="fa-solid fa-book-open mr-2 text-sky-600"></i> Layanan Mahasiswa
+                <a href="{{ route('services') }}" class="px-5 py-2.5 rounded-xl bg-theme-primary hover:opacity-90 text-white font-bold text-xs uppercase tracking-wider shadow transition shrink-0 flex items-center space-x-2">
+                    <i class="fa-solid fa-book-open"></i>
+                    <span>Layanan Mahasiswa</span>
                 </a>
                 @else
-                <a href="{{ route('contact') }}" class="px-6 py-3 rounded-xl bg-white text-slate-950 font-bold text-xs uppercase tracking-wider shadow hover:bg-slate-100 transition flex-shrink-0 flex items-center">
-                    <i class="fa-solid fa-paper-plane mr-2 text-sky-600"></i> Hubungi Kami
+                <a href="{{ route('contact') }}" class="px-5 py-2.5 rounded-xl bg-theme-primary hover:opacity-90 text-white font-bold text-xs uppercase tracking-wider shadow transition shrink-0 flex items-center space-x-2">
+                    <i class="fa-solid fa-paper-plane"></i>
+                    <span>Hubungi Kami</span>
                 </a>
                 @endif
+            </div>
+
+            <!-- Role Highlights Grid -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 pt-6">
+                <div class="flex items-center space-x-3.5 p-4 rounded-2xl bg-slate-800/80 dark:bg-slate-800/60 border border-slate-700/80 hover:border-sky-500/50 transition group">
+                    <div class="w-10 h-10 rounded-xl bg-sky-500/15 text-sky-400 flex items-center justify-center shrink-0 text-base group-hover:scale-105 transition">
+                        <i class="fa-solid fa-hand-holding-medical"></i>
+                    </div>
+                    <div>
+                        <div class="text-xs font-bold text-white group-hover:text-sky-300 transition">Care Provider</div>
+                        <div class="text-[11px] text-slate-400 mt-0.5">Asuhan Keperawatan Komprehensif</div>
+                    </div>
+                </div>
+
+                <div class="flex items-center space-x-3.5 p-4 rounded-2xl bg-slate-800/80 dark:bg-slate-800/60 border border-slate-700/80 hover:border-emerald-500/50 transition group">
+                    <div class="w-10 h-10 rounded-xl bg-emerald-500/15 text-emerald-400 flex items-center justify-center shrink-0 text-base group-hover:scale-105 transition">
+                        <i class="fa-solid fa-comments"></i>
+                    </div>
+                    <div>
+                        <div class="text-xs font-bold text-white group-hover:text-emerald-300 transition">Communicator</div>
+                        <div class="text-[11px] text-slate-400 mt-0.5">Edukator & Promosi Kesehatan</div>
+                    </div>
+                </div>
+
+                <div class="flex items-center space-x-3.5 p-4 rounded-2xl bg-slate-800/80 dark:bg-slate-800/60 border border-slate-700/80 hover:border-amber-500/50 transition group">
+                    <div class="w-10 h-10 rounded-xl bg-amber-500/15 text-amber-400 flex items-center justify-center shrink-0 text-base group-hover:scale-105 transition">
+                        <i class="fa-solid fa-user-tie"></i>
+                    </div>
+                    <div>
+                        <div class="text-xs font-bold text-white group-hover:text-amber-300 transition">Manager & Leader</div>
+                        <div class="text-[11px] text-slate-400 mt-0.5">Pengelola Layanan & Tim Medis</div>
+                    </div>
+                </div>
+
+                <div class="flex items-center space-x-3.5 p-4 rounded-2xl bg-slate-800/80 dark:bg-slate-800/60 border border-slate-700/80 hover:border-purple-500/50 transition group">
+                    <div class="w-10 h-10 rounded-xl bg-purple-500/15 text-purple-400 flex items-center justify-center shrink-0 text-base group-hover:scale-105 transition">
+                        <i class="fa-solid fa-microscope"></i>
+                    </div>
+                    <div>
+                        <div class="text-xs font-bold text-white group-hover:text-purple-300 transition">Researcher</div>
+                        <div class="text-[11px] text-slate-400 mt-0.5">Peneliti Keperawatan Pemula</div>
+                    </div>
+                </div>
             </div>
         </div>
         @endif
