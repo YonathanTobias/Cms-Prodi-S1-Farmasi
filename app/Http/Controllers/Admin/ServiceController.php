@@ -15,6 +15,20 @@ class ServiceController extends Controller
         return view('admin.services.index', compact('services'));
     }
 
+    /**
+     * Quick toggle for enabling / disabling the entire services module
+     */
+    public function toggleModule()
+    {
+        $current = get_setting('enable_services', '1') !== '0';
+        $newValue = $current ? '0' : '1';
+        \App\Models\Setting::set('enable_services', $newValue);
+        \App\Models\Setting::clearCache();
+
+        $statusText = $newValue === '1' ? 'diaktifkan dan ditampilkan di website' : 'dinonaktifkan dan disembunyikan dari website';
+        return back()->with('success', "Modul & Menu Layanan Divisi berhasil {$statusText}.");
+    }
+
     public function create()
     {
         return view('admin.services.create');
@@ -75,29 +89,5 @@ class ServiceController extends Controller
     {
         $service->delete();
         return back()->with('success', 'Layanan berhasil dihapus.');
-    }
-
-    /**
-     * Toggle the entire services module on/off for public site
-     */
-    public function toggleModule(Request $request)
-    {
-        \App\Models\Setting::clearCache();
-
-        if ($request->filled('target_status')) {
-            $newStatus = $request->input('target_status') === '1' ? '1' : '0';
-        } else {
-            $current = (string) get_setting('enable_services', '1');
-            $newStatus = in_array($current, ['0', 'false', 'off', ''], true) ? '1' : '0';
-        }
-
-        \App\Models\Setting::set('enable_services', $newStatus);
-        \App\Models\Setting::clearCache();
-
-        $message = ($newStatus === '1')
-            ? 'Fitur Layanan Divisi berhasil DIAKTIFKAN (ON). Modul dan menu Layanan sekarang tampil di website publik.'
-            : 'Fitur Layanan Divisi berhasil DINONAKTIFKAN (OFF). Modul dan menu Layanan sekarang disembunyikan dari website publik.';
-
-        return redirect()->back()->with('success', $message);
     }
 }
