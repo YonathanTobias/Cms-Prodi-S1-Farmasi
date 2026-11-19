@@ -26,26 +26,39 @@ class DatabaseSeeder extends Seeder
     public function run(): void
     {
         // 1. Akun Pengguna / Administrator
-        $superAdmin = User::updateOrCreate(
-            ['email' => 'admin@pantiwaluya.ac.id'],
+        // Super Admin khusus Orang IT (memiliki akses penuh & manajemen sistem)
+        $itAdmin = User::updateOrCreate(
+            ['email' => 'it@pantiwaluya.ac.id'],
             [
-                'name' => 'Super Admin Utama',
+                'name' => 'Super Admin (Unit IT)',
                 'role' => 'super_admin',
                 'password' => Hash::make('password123'),
                 'email_verified_at' => now(),
             ]
         );
 
+        $superAdmin = User::updateOrCreate(
+            ['email' => 'admin@pantiwaluya.ac.id'],
+            [
+                'name' => 'Super Admin IT Utama',
+                'role' => 'super_admin',
+                'password' => Hash::make('password123'),
+                'email_verified_at' => now(),
+            ]
+        );
+
+        // Akun Kaprodi sebagai Admin Prodi (mengelola konten & layanan akademik)
         $kaprodi = User::updateOrCreate(
             ['email' => 'keperawatan@pantiwaluya.ac.id'],
             [
                 'name' => 'Kaprodi S1 Keperawatan & Ners',
-                'role' => 'super_admin',
+                'role' => 'admin',
                 'password' => Hash::make('password123'),
                 'email_verified_at' => now(),
             ]
         );
 
+        // Akun Admin Berita / Humas Prodi
         $newsAdmin = User::updateOrCreate(
             ['email' => 'berita@pantiwaluya.ac.id'],
             [
