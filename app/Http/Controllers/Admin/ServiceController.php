@@ -76,4 +76,20 @@ class ServiceController extends Controller
         $service->delete();
         return back()->with('success', 'Layanan berhasil dihapus.');
     }
+
+    /**
+     * Toggle the entire services module on/off for public site
+     */
+    public function toggleModule()
+    {
+        $current = get_setting('enable_services', '1');
+        $newStatus = ($current === '0') ? '1' : '0';
+        \App\Models\Setting::updateOrCreate(['key' => 'enable_services'], ['value' => $newStatus, 'group' => 'general']);
+
+        $message = ($newStatus === '1')
+            ? 'Fitur Layanan Divisi berhasil DIAKTIFKAN (ON). Modul dan menu Layanan sekarang tampil di website publik.'
+            : 'Fitur Layanan Divisi berhasil DINONAKTIFKAN (OFF). Modul dan menu Layanan sekarang disembunyikan dari website publik.';
+
+        return redirect()->back()->with('success', $message);
+    }
 }
