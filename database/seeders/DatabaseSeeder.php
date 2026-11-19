@@ -2,10 +2,12 @@
 
 namespace Database\Seeders;
 
+use App\Models\Carousel;
 use App\Models\Category;
 use App\Models\Document;
 use App\Models\Event;
 use App\Models\Gallery;
+use App\Models\NavMenu;
 use App\Models\Page;
 use App\Models\Post;
 use App\Models\Service;
@@ -19,33 +21,12 @@ use Illuminate\Support\Str;
 class DatabaseSeeder extends Seeder
 {
     /**
-     * Seed the application's database.
+     * Seed the application's database for Prodi S1 Keperawatan & Profesi Ners.
      */
     public function run(): void
     {
-        // 1. Create Super Admin (Prodi / Divisi / IT) and Admin (Hanya Upload Berita)
+        // 1. Akun Pengguna / Administrator
         $superAdmin = User::updateOrCreate(
-            ['email' => 'it@pantiwaluya.ac.id'],
-            [
-                'name' => 'Super Admin (IT & Prodi)',
-                'role' => 'super_admin',
-                'password' => Hash::make('password123'),
-                'email_verified_at' => now(),
-            ]
-        );
-
-        $divisionAdmin = User::updateOrCreate(
-            ['email' => 'divisi@pantiwaluya.ac.id'],
-            [
-                'name' => 'Super Admin Prodi / Divisi',
-                'role' => 'super_admin',
-                'password' => Hash::make('password123'),
-                'email_verified_at' => now(),
-            ]
-        );
-
-        // Alias for admin@pantiwaluya.ac.id as Super Admin
-        $admin = User::updateOrCreate(
             ['email' => 'admin@pantiwaluya.ac.id'],
             [
                 'name' => 'Super Admin Utama',
@@ -55,47 +36,60 @@ class DatabaseSeeder extends Seeder
             ]
         );
 
-        // Create Admin (Hanya Upload Berita)
+        $kaprodi = User::updateOrCreate(
+            ['email' => 'keperawatan@pantiwaluya.ac.id'],
+            [
+                'name' => 'Kaprodi S1 Keperawatan & Ners',
+                'role' => 'super_admin',
+                'password' => Hash::make('password123'),
+                'email_verified_at' => now(),
+            ]
+        );
+
         $newsAdmin = User::updateOrCreate(
             ['email' => 'berita@pantiwaluya.ac.id'],
             [
-                'name' => 'Admin (Upload Berita)',
+                'name' => 'Admin Humas & Berita Prodi',
                 'role' => 'admin',
                 'password' => Hash::make('password123'),
                 'email_verified_at' => now(),
             ]
         );
 
-        // 2. Seed Default Division Settings (Default: LPPM STIKES Panti Waluya)
+        // 2. Pengaturan Profil & Identitas Prodi S1 Keperawatan & Profesi Ners
         $defaultSettings = [
-            // Identitas Divisi
-            'division_name' => 'Lembaga Penelitian dan Pengabdian kepada Masyarakat (LPPM)',
-            'division_short_name' => 'LPPM STIKES Panti Waluya',
-            'division_acronym' => 'LPPM',
-            'division_tagline' => 'Mendorong Riset & Pengabdian Berbasis Pelayanan Kesehatan Holistik',
+            // Identitas Program Studi
+            'division_name' => 'Program Studi S1 Keperawatan & Pendidikan Profesi Ners',
+            'division_short_name' => 'Prodi S1 Keperawatan & Ners',
+            'division_acronym' => 'S1 KEP & NERS',
+            'division_type' => 'prodi',
+            'prodi_degree' => 'Sarjana Keperawatan (S.Kep) & Profesi Ners (Ns.)',
+            'prodi_accreditation' => 'Terakreditasi Baik Sekali (LAM-PTKes)',
+            'division_tagline' => 'Mewujudkan Ners Profesional, Unggul, Inovatif, dan Berkarakter Kasih',
             'parent_institution' => 'STIKES Panti Waluya Malang',
             
             // Visual & Branding
-            'theme_primary_color' => '#0e7490', // Cyan-700 / Teal
+            'theme_primary_color' => '#0284c7', // Sky-600 (Karakter Keperawatan Profesional)
             'theme_secondary_color' => '#0369a1', // Sky-700
             'theme_accent_color' => '#059669', // Emerald-600
             'logo_url' => '',
-            'hero_banner_title' => 'Pusat Penelitian & Pengabdian Masyarakat Unggul',
-            'hero_banner_subtitle' => 'Mengembangkan ilmu pengetahuan, riset klinis, dan pemberdayaan masyarakat di bidang kesehatan yang berkualitas dan berdaya saing.',
+            'hero_banner_title' => 'Program Studi S1 Keperawatan & Pendidikan Profesi Ners',
+            'hero_banner_subtitle' => 'Mencetak Ners profesional, unggul dalam asuhan keperawatan holistik, serta berdaya saing global berlandaskan kasih.',
 
             // Tentang & Visi Misi
-            'about_title' => 'Tentang LPPM STIKES Panti Waluya',
-            'about_description' => 'Lembaga Penelitian dan Pengabdian kepada Masyarakat (LPPM) STIKES Panti Waluya Malang merupakan unit pelaksana akademik yang bertugas mengoordinasikan, memfasilitasi, dan mengarahkan kegiatan penelitian dan pengabdian masyarakat dosen dan mahasiswa.',
-            'vision' => 'Menjadi pusat pengembangan riset kesehatan dan pengabdian masyarakat yang inovatif, berlandaskan cinta kasih dan etika profesi kesehatan pada tahun 2030.',
-            'mission' => "1. Menumbuhkembangkan budaya riset kesehatan yang berorientasi pada peningkatan kualitas asuhan kesehatan.\n2. Melaksanakan pengabdian kepada masyarakat yang berbasis hasil riset untuk meningkatkan derajat kesehatan komunitas.\n3. Memfasilitasi hilirisasi, publikasi ilmiah di jurnal nasional/internasional terakreditasi, serta perolehan Hak Kekayaan Intelektual (HKI).\n4. Membangun kemitraan strategis dengan institusi pelayanan kesehatan, pemerintah daerah, dan industri.",
+            'about_title' => 'Tentang Prodi S1 Keperawatan & Profesi Ners',
+            'about_description' => "Program Studi S1 Keperawatan dan Pendidikan Profesi Ners STIKES Panti Waluya Malang menyelenggarakan pendidikan tinggi keperawatan terpadu yang memadukan tahap akademik Sarjana Keperawatan dan tahap Profesi Ners.\n\nKurikulum kami dirancang berbasis Outcome-Based Education (OBE) dan standar nasional KKNI, berorientasi pada keunggulan keperawatan holistik, paliatif, medikal bedah, serta kegawatdaruratan dan bencana.\n\nDidukung tenaga pengajar berkualifikasi S2/S3 Keperawatan dan Ners Spesialis, laboratorium berstandar rumah sakit, OSCE Center, serta jaringan Rumah Sakit Pendidikan Tipe A dan B, kami berkomitmen mencetak lulusan yang profesional, adaptif, dan berjiwa cinta kasih.",
+            'vision' => 'Menjadi Program Studi S1 Ilmu Keperawatan dan Pendidikan Profesi Ners yang Unggul, Inovatif, dan Berdaya Saing Global Berlandaskan Nilai-Nilai Kasih dan Kearifan Lokal pada Tahun 2035.',
+            'mission' => "1. Menyelenggarakan pendidikan sarjana keperawatan dan profesi ners bermutu tinggi berbasis kurikulum OBE (Outcome-Based Education).\n2. Mengembangkan penelitian inovatif berbasis bukti (Evidence-Based Nursing) guna memperkaya ilmu pengetahuan dan mutu pelayanan kesehatan.\n3. Melaksanakan pengabdian kepada masyarakat berbasis hasil riset keperawatan untuk meningkatkan derajat kesehatan komunitas dan kemandirian keluarga.\n4. Membina pembentukan karakter lulusan yang berintegritas tinggi, berdisiplin, beretika luhur, dan berjiwa cinta kasih dalam melayani sesama.\n5. Menjalin kerjasama strategis dengan rumah sakit pendidikan, industri pelayanan kesehatan, institusi internasional, dan organisasi profesi (PPNI).",
+            'prodi_graduate_profile' => "Lulusan dipersiapkan sebagai Care Provider (Pemberi Asuhan Keperawatan Komprehensif), Communicator, Educator & Health Promoter, Manager & Leader di fasilitas pelayanan kesehatan, serta Researcher pemula yang berdaya saing global.",
             
             // Kontak & Lokasi
-            'contact_email' => 'lppm@pantiwaluya.ac.id',
+            'contact_email' => 'keperawatan@pantiwaluya.ac.id',
             'contact_phone' => '(0341) 569275',
             'contact_whatsapp' => '6281234567890',
             'enable_whatsapp_floating' => '1',
-            'whatsapp_floating_message' => 'Halo Admin, saya ingin bertanya mengenai informasi layanan.',
-            'contact_room' => 'Gedung Rektorat Lt. 2, Kampus STIKES Panti Waluya Malang',
+            'whatsapp_floating_message' => 'Halo Admin Prodi S1 Keperawatan & Ners, saya ingin bertanya seputar informasi akademik.',
+            'contact_room' => 'Gedung Rektorat Lt. 2, Ruang Prodi S1 Keperawatan & Profesi Ners',
             'contact_address' => 'Jl. Yulius Usman No. 62, Kasin, Kec. Klojen, Kota Malang, Jawa Timur 65117',
             'operating_hours' => 'Senin - Jumat: 08.00 - 16.00 WIB',
             'google_maps_embed' => 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3951.213601444588!2d112.62473467499647!3d-7.976868692048386!2m3!1f0!2f0!3f0!3m2!1i1024!2f768!4f13.1!3m3!1m2!1s0x2dd62828b49e1a17%3A0xc3cb73f1d3c01fa9!2sSTIKes%20Panti%20Waluya%20Malang!5e0!3m2!1sid!2sid!4v1700000000000!5m2!1sid!2sid',
@@ -106,128 +100,143 @@ class DatabaseSeeder extends Seeder
             'social_youtube' => 'https://youtube.com/@stikespantiwaluya',
             'social_website' => 'https://pantiwaluya.ac.id',
 
-            // Statistik Ringkas di Beranda
-            'stat_1_number' => '120+',
-            'stat_1_label' => 'Publikasi Ilmiah',
-            'stat_2_number' => '45+',
-            'stat_2_label' => 'Pengabdian Masyarakat',
+            // Statistik Capaian di Beranda
+            'stat_1_number' => '98%',
+            'stat_1_label' => 'Kelulusan UKOM Ners',
+            'stat_2_number' => '100%',
+            'stat_2_label' => 'Dosen S2/S3 & Ners Spesialis',
             'stat_3_number' => '25+',
-            'stat_3_label' => 'HKI & Hak Cipta',
-            'stat_4_number' => '15+',
-            'stat_4_label' => 'Mitra Kerjasama',
+            'stat_3_label' => 'RS & Wahana Praktik Mitra',
+            'stat_4_number' => '1.500+',
+            'stat_4_label' => 'Alumni Ners Terserap Kerja',
         ];
 
         foreach ($defaultSettings as $key => $value) {
             Setting::updateOrCreate(['key' => $key], ['value' => $value, 'group' => 'general']);
         }
 
-        // 3. Categories
-        $cat1 = Category::updateOrCreate(['slug' => 'penelitian'], ['name' => 'Penelitian & Riset', 'type' => 'post', 'description' => 'Informasi hibah dan riset dosen']);
-        $cat2 = Category::updateOrCreate(['slug' => 'pengabdian'], ['name' => 'Pengabdian Masyarakat', 'type' => 'post', 'description' => 'Kegiatan pengmas dan bakti sosial']);
-        $cat3 = Category::updateOrCreate(['slug' => 'pengumuman-hibah'], ['name' => 'Pengumuman & Hibah', 'type' => 'post', 'description' => 'Info call for proposal dan edaran']);
-        $catDoc1 = Category::updateOrCreate(['slug' => 'panduan-sop'], ['name' => 'Panduan & SOP', 'type' => 'document', 'description' => 'Buku pedoman & SOP']);
-        $catDoc2 = Category::updateOrCreate(['slug' => 'template-form'], ['name' => 'Template & Formulir', 'type' => 'document', 'description' => 'Formulir pengajuan']);
+        // 3. Kategori Berita & Dokumen
+        $cat1 = Category::updateOrCreate(['slug' => 'akademik-perkuliahan'], ['name' => 'Akademik & Perkuliahan', 'type' => 'post', 'description' => 'Informasi perkuliahan dan kurikulum keperawatan']);
+        $cat2 = Category::updateOrCreate(['slug' => 'praktik-klinik-profesi'], ['name' => 'Praktik Klinik & Profesi', 'type' => 'post', 'description' => 'Informasi stase klinik dan rotasi RS']);
+        $cat3 = Category::updateOrCreate(['slug' => 'pengumuman-prodi'], ['name' => 'Pengumuman Resmi', 'type' => 'post', 'description' => 'Edaran dan pengumuman resmi prodi']);
+        $catDoc1 = Category::updateOrCreate(['slug' => 'pedoman-panduan'], ['name' => 'Buku Panduan & Pedoman', 'type' => 'document', 'description' => 'Buku pedoman akademik dan praktik klinik']);
+        $catDoc2 = Category::updateOrCreate(['slug' => 'format-skripsi-kian'], ['name' => 'Format Skripsi & KIAN', 'type' => 'document', 'description' => 'Format penulisan tugas akhir sarjana dan profesi']);
+        $catDoc3 = Category::updateOrCreate(['slug' => 'formulir-praktik'], ['name' => 'Formulir Praktik Klinik', 'type' => 'document', 'description' => 'Logbook dan formulir administrasi stase']);
 
-        // 4. Sample Posts (Berita & Pengumuman)
+        // 4. Berita & Pengumuman Prodi
         Post::updateOrCreate(
-            ['slug' => 'penerimaan-proposal-penelitian-dan-pengabdian-internal-tahun-2025'],
+            ['slug' => 'pelepasan-mahasiswa-praktik-klinik-keperawatan-terpadu'],
             [
-                'title' => 'Penerimaan Proposal Penelitian dan Pengabdian Internal Tahun 2025',
-                'category_id' => $cat3->id,
-                'user_id' => $admin->id,
-                'type' => 'pengumuman',
-                'summary' => 'LPPM STIKES Panti Waluya membuka pendaftaran hibah penelitian dan pengmas internal untuk dosen dan mahasiswa.',
-                'content' => '<p>Diberitahukan kepada seluruh dosen dan sivitas akademika STIKES Panti Waluya Malang, bahwa pendaftaran proposal hibah internal untuk skim penelitian dosen pemula, penelitian terapan, dan pengabdian masyarakat telah resmi dibuka mulai 1 Maret hingga 15 April 2025.</p><p>Panduan pengusulan dapat diunduh pada menu Pusat Unduhan. Pengumpulan proposal dilakukan secara daring melalui sistem LPPM.</p>',
+                'title' => 'Pelepasan Mahasiswa Praktik Klinik Keperawatan (PKK) di RS Jejaring Pendidikan',
+                'category_id' => $cat2->id,
+                'user_id' => $superAdmin->id,
+                'type' => 'berita',
+                'summary' => 'Prodi S1 Keperawatan dan Profesi Ners secara resmi memberangkatkan mahasiswa untuk menjalani rotasi praktik klinik.',
+                'content' => '<p>Program Studi S1 Keperawatan dan Pendidikan Profesi Ners STIKES Panti Waluya Malang menyelenggarakan acara pembekalan dan pelepasan mahasiswa Praktik Klinik Keperawatan (PKK) di Rumah Sakit jejaring pendidikan wilayah Jawa Timur.</p><p>Kegiatan praktik klinik ini bertujuan untuk mengasah kompetensi asuhan keperawatan langsung kepada pasien secara holistik, mengutamakan keselamatan pasien (patient safety), dan menjunjung tinggi kode etik keperawatan.</p>',
                 'is_featured' => true,
                 'is_published' => true,
                 'published_at' => now()->subDays(2),
-                'views_count' => 142,
+                'views_count' => 195,
             ]
         );
 
         Post::updateOrCreate(
-            ['slug' => 'pelatihan-penulisan-artikel-ilmiah-bereputasi-internasional-scopus'],
+            ['slug' => 'workshop-persiapan-uji-kompetensi-nasional-ners-2025'],
             [
-                'title' => 'Workshop Penulisan Artikel Ilmiah Bereputasi Internasional Scopus & Sinta',
+                'title' => 'Workshop Intensif Persiapan Uji Kompetensi Nasional (Exit Exam) Ners Periode 2025',
                 'category_id' => $cat1->id,
-                'user_id' => $admin->id,
+                'user_id' => $superAdmin->id,
                 'type' => 'berita',
-                'summary' => 'Meningkatkan produktivitas publikasi dosen di bidang keperawatan dan farmasi melalui workshop intensif.',
-                'content' => '<p>Dalam rangka mendorong peningkatan jumlah publikasi internasional, LPPM STIKES Panti Waluya menyelenggarakan Workshop Penulisan Artikel Ilmiah Bereputasi yang dihadiri oleh seluruh dosen prodi Keperawatan dan Farmasi. Narasumber terkemuka membagikan strategi submit jurnal Q1 dan tips menghadapi reviewer.</p>',
+                'summary' => 'Mempersiapkan lulusan Ners dengan pemantapan materi soal klinis dan simulasi CBT berskala nasional.',
+                'content' => '<p>Dalam upaya mempertahankan rekor tingkat kelulusan tinggi (First Taker Pass Rate), Prodi menyelenggarakan Workshop Pemantapan Soal Uji Kompetensi Nasional Ners (UKOM). Narasumber pakar keperawatan membedah soal-soal vignete 7 area keperawatan klinis dan strategi manajemen waktu saat ujian CBT.</p>',
                 'is_featured' => true,
                 'is_published' => true,
                 'published_at' => now()->subDays(5),
-                'views_count' => 218,
+                'views_count' => 280,
             ]
         );
 
         Post::updateOrCreate(
-            ['slug' => 'kegiatan-pemberdayaan-kader-kesehatan-lansia-di-wilayah-malang'],
+            ['slug' => 'sosialisasi-alur-penyusunan-skripsi-dan-kian-tahun-akademik-2025'],
             [
-                'title' => 'Kegiatan Pemberdayaan Kader Kesehatan Lansia di Wilayah Malang',
-                'category_id' => $cat2->id,
-                'user_id' => $admin->id,
-                'type' => 'berita',
-                'summary' => 'Tim Pengabdi STIKES Panti Waluya mengadakan pelatihan deteksi dini penyakit degeneratif bagi kader lansia.',
-                'content' => '<p>Sebagai wujud Tri Dharma Perguruan Tinggi, tim dosen dan mahasiswa melaksanakan pengabdian masyarakat di Posyandu Lansia. Kegiatan meliputi pemeriksaan tekanan darah, gula darah, edukasi nutrisi lansia, dan senam kebugaran lansia.</p>',
+                'title' => 'Sosialisasi Alur Penyusunan Skripsi & Sidang Karya Ilmiah Akhir Ners (KIAN)',
+                'category_id' => $cat3->id,
+                'user_id' => $superAdmin->id,
+                'type' => 'pengumuman',
+                'summary' => 'Pedoman pengajuan judul, alur bimbingan dosen pembimbing, hingga syarat kelayakan ujian sidang hasil.',
+                'content' => '<p>Diberitahukan kepada seluruh mahasiswa tingkat akhir Program Sarjana dan Program Profesi Ners mengenai jadwal pengusulan proposal skripsi dan KIAN. Buku pedoman penulisan dan format lembar pengesahan terbaru telah dapat diunduh pada Pusat Unduhan website resmi prodi.</p>',
                 'is_featured' => false,
                 'is_published' => true,
-                'published_at' => now()->subDays(10),
-                'views_count' => 89,
+                'published_at' => now()->subDays(8),
+                'views_count' => 164,
             ]
         );
 
-        // 5. Sample Services (Layanan Divisi)
+        // 5. Layanan Mahasiswa & Akademik Prodi
         Service::updateOrCreate(
-            ['slug' => 'layanan-ethical-clearance-komisi-etik'],
+            ['slug' => 'layanan-praktik-klinik-dan-stase-ners'],
             [
-                'title' => 'Layanan Kaji Etik Penelitian (Ethical Clearance)',
-                'icon' => 'fa-solid fa-file-shield',
-                'summary' => 'Pengajuan dan telaah kelayakan etik untuk penelitian kesehatan yang melibatkan subjek manusia.',
-                'description' => 'Komite Etik Penelitian Kesehatan (KEPK) di bawah koordinasi LPPM memberikan sertifikat Ethical Clearance bagi peneliti dosen dan mahasiswa untuk memastikan penelitian memenuhi standar perlindungan subjek manusia.',
-                'requirements' => "1. Surat Pengantar dari Prodi / Institusi\n2. Proposal Penelitian Lengkap\n3. Lembar Informed Consent & Kuesioner/Alat Ukur\n4. Curriculum Vitae Peneliti Utama",
-                'procedure' => "1. Peneliti mengisi form permohonan etik di web LPPM.\n2. Mengunggah berkas proposal & instrumen.\n3. Tim penelaah KEPK melakukan review etik (Full board / Expedited).\n4. Terbitnya Surat Keterangan Lolos Kaji Etik (Ethical Approval).",
+                'title' => 'Layanan Praktik Klinik & Stase Profesi Ners',
+                'icon' => 'fa-solid fa-user-nurse',
+                'summary' => 'Koordinasi penempatan, pembekalan, dan supervisi stase klinik di Rumah Sakit jejaring dan komunitas.',
+                'description' => 'Program Studi memfasilitasi rotasi praktik klinik mahasiswa tahap sarjana dan profesi ners di berbagai stase keperawatan (KMB, Maternitas, Anak, Jiwa, Gadar-Kritis, Komunitas, Gerontik, dan Manajemen Keperawatan).',
+                'requirements' => "1. Telah menyelesaikan beban SKS prasyarat akademik\n2. Surat Keterangan Lulus Pembekalan & OSCE Internal\n3. Bukti Vaksinasi & Medical Check-Up\n4. Surat Izin Orang Tua/Wali",
+                'procedure' => "1. Mahasiswa melakukan pendaftaran stase di sistem akademik prodi.\n2. Mengikuti pembekalan teknis dan uji keterampilan klinik (OSCE).\n3. Penyerahan ke Rumah Sakit Pendidikan mitra.\n4. Pelaksanaan stase klinik dan bimbingan preseptor.",
                 'order_index' => 1,
                 'is_active' => true,
             ]
         );
 
         Service::updateOrCreate(
-            ['slug' => 'fasilitasi-hki-dan-hak-cipta'],
+            ['slug' => 'bimbingan-skripsi-dan-karya-ilmiah-ners'],
             [
-                'title' => 'Fasilitasi Pendaftaran HKI & Hak Cipta',
-                'icon' => 'fa-solid fa-certificate',
-                'summary' => 'Bantuan pengurusan pendaftaran hak cipta modul, buku, aplikasi, dan paten ke DJKI Kemenkumham.',
-                'description' => 'Membantu dosen dan mahasiswa dalam proses perlindungan hak kekayaan intelektual atas karya inovasi, modul pembelajaran kesehatan, dan karya cipta lainnya.',
-                'requirements' => "1. Karya Cipta (Buku/Modul/Software/Poster)\n2. Form Pendaftaran Hak Cipta\n3. Surat Pernyataan Keaslian Karya Bermaterai\n4. KTP Seluruh Pencipta",
-                'procedure' => "1. Mengajukan draf karya ke LPPM.\n2. Verifikasi berkas oleh admin Sentra HKI.\n3. Pendaftaran ke portal DJKI Kemenkumham.\n4. Penyerahan Sertifikat Hak Cipta resmi.",
+                'title' => 'Bimbingan Skripsi & Sidang KIAN',
+                'icon' => 'fa-solid fa-graduation-cap',
+                'summary' => 'Pelayanan pengajuan judul, penetapan dosen pembimbing, seminar proposal, hingga sidang hasil karya ilmiah.',
+                'description' => 'Layanan akademik bagi mahasiswa S1 Keperawatan untuk penyusunan Skripsi dan mahasiswa Profesi Ners untuk penyusunan Karya Ilmiah Akhir Ners (KIAN) berbasis studi kasus klinis.',
+                'requirements' => "1. KRS Skripsi/KIAN telah disetujui Dosen PA\n2. Naskah Proposal Penelitian / Analisis Kasus\n3. Lembar Persetujuan Pembimbing\n4. Bebas Administrasi Keuangan",
+                'procedure' => "1. Pengajuan judul dan usulan pembimbing ke Koordinator Skripsi/KIAN.\n2. Penetapan SK Pembimbing oleh Prodi.\n3. Proses bimbingan minimal 8 kali pertemuan.\n4. Pendaftaran seminar proposal dan sidang hasil.",
                 'order_index' => 2,
                 'is_active' => true,
             ]
         );
 
         Service::updateOrCreate(
-            ['slug' => 'klinik-manuskrip-dan-insentif-publikasi'],
+            ['slug' => 'bimbingan-uji-kompetensi-nasional-ners'],
             [
-                'title' => 'Klinik Manuskrip & Insentif Publikasi',
-                'icon' => 'fa-solid fa-pen-nib',
-                'summary' => 'Pendampingan penulisan naskah jurnal, proofreading, cek plagiarisme Turnitin, dan insentif publikasi.',
-                'description' => 'Layanan bantuan peningkatan kualitas naskah ilmiah dosen sebelum disubmit ke jurnal nasional terakreditasi SINTA atau jurnal internasional bereputasi.',
-                'requirements' => "1. Draf Naskah Lengkap (IMRAD format)\n2. Target Jurnal Tujuan\n3. Hasil Cek Similaritas Turnitin (bisa difasilitasi LPPM)",
-                'procedure' => "1. Kirim draf naskah via sistem.\n2. Review oleh reviewer internal LPPM.\n3. Perbaikan draf dan proofreading.\n4. Bantuan submit jurnal dan klaim insentif jika telah terbit.",
+                'title' => 'Pendampingan & Try Out Uji Kompetensi (UKOM) Ners',
+                'icon' => 'fa-solid fa-award',
+                'summary' => 'Program pembinaan intensif, try out Computer Based Test (CBT), dan pendaftaran exit exam nasional Ners.',
+                'description' => 'Fasilitasi persiapan menghadapi Uji Kompetensi Nasional Ners (UKOM) melalui review soal, bimbingan materi komprehensif, dan simulasi CBT berkala untuk mencapai tingkat kelulusan optimal.',
+                'requirements' => "1. Mahasiswa terdaftar pada semester akhir tahap Profesi Ners\n2. Telah menyelesaikan seluruh stase klinik\n3. Mengikuti rangkaian Try Out Internal Prodi\n4. Berkas administrasi pendaftaran UKOM Nasional",
+                'procedure' => "1. Pendaftaran peserta UKOM via sekretariat prodi.\n2. Mengikuti bimbingan intensif dan try out berkala.\n3. Verifikasi data peserta di portal nasional.\n4. Pelaksanaan ujian CBT dan pengurusan berkas STR pasca kelulusan.",
                 'order_index' => 3,
                 'is_active' => true,
             ]
         );
 
-        // 6. Sample Team Members
+        Service::updateOrCreate(
+            ['slug' => 'pelayanan-administrasi-akademik-mahasiswa'],
+            [
+                'title' => 'Layanan Administrasi Akademik & Surat Izin Penelitian',
+                'icon' => 'fa-solid fa-file-signature',
+                'summary' => 'Penerbitan surat izin studi pendahuluan, izin penelitian, rekomendasi beasiswa, dan legalisir berkas.',
+                'description' => 'Pusat pelayanan surat-menyurat akademik bagi mahasiswa yang memerlukan perizinan pengambilan data di rumah sakit, puskesmas, klinik, maupun instansi pemerintah terkait.',
+                'requirements' => "1. Mengisi formulir permohonan surat secara online\n2. Melampirkan persetujuan Dosen Pembimbing / PA\n3. Menyertakan instrumen dan judul penelitian (bila untuk riset)",
+                'procedure' => "1. Mengajukan surat permohonan melalui sistem / loket prodi.\n2. Verifikasi berkas oleh staf tata usaha.\n3. Penandatanganan oleh Ketua Program Studi.\n4. Surat resmi terbit dalam waktu 1-2 hari kerja.",
+                'order_index' => 4,
+                'is_active' => true,
+            ]
+        );
+
+        // 6. Dosen & Susunan Pengelola Prodi S1 Keperawatan & Ners
         TeamMember::updateOrCreate(
-            ['name' => 'Ns. Maria Magdalena, M.Kep.'],
+            ['name' => 'Ns. Maria Magdalena, M.Kep., Sp.Kep.MB'],
             [
                 'title_degree' => 'M.Kep., Sp.Kep.MB',
                 'identifier' => 'NIDN. 0712058501',
-                'position' => 'Kepala LPPM',
-                'bio' => 'Dosen Keperawatan Medikal Bedah dengan fokus riset manajemen luka kronis dan keperawatan kardiovaskuler.',
+                'position' => 'Ketua Program Studi S1 Keperawatan & Ners',
+                'bio' => 'Dosen Keperawatan Medikal Bedah dengan spesialisasi keperawatan kardiovaskuler dan manajemen perawatan luka modern.',
                 'email' => 'maria.magdalena@pantiwaluya.ac.id',
                 'phone' => '081234567891',
                 'order_index' => 1,
@@ -235,28 +244,41 @@ class DatabaseSeeder extends Seeder
         );
 
         TeamMember::updateOrCreate(
-            ['name' => 'apt. Yohanes Baptista, M.Farm.'],
+            ['name' => 'Ns. Yohanes Berchmans, M.Kep., Sp.Kep.Kom'],
             [
-                'title_degree' => 'M.Farm.',
+                'title_degree' => 'M.Kep., Sp.Kep.Kom',
                 'identifier' => 'NIDN. 0725088902',
-                'position' => 'Sekretaris & Koordinator Penelitian',
-                'bio' => 'Dosen Farmasi dengan fokus riset formulasi obat herbal dan farmasi klinis komunitas.',
-                'email' => 'yohanes.baptista@pantiwaluya.ac.id',
+                'position' => 'Sekretaris Prodi & Koordinator Profesi Ners',
+                'bio' => 'Dosen Keperawatan Komunitas dengan fokus penelitian promosi kesehatan masyarakat dan manajemen fasilitas kesehatan primer.',
+                'email' => 'yohanes.berchmans@pantiwaluya.ac.id',
                 'phone' => '081234567892',
                 'order_index' => 2,
             ]
         );
 
         TeamMember::updateOrCreate(
-            ['name' => 'Ns. Theresia Avila, M.Kes.'],
+            ['name' => 'Ns. Theresia Avila, M.Kep., Sp.Kep.An'],
             [
-                'title_degree' => 'M.Kes.',
+                'title_degree' => 'M.Kep., Sp.Kep.An',
                 'identifier' => 'NIDN. 0718109003',
-                'position' => 'Koordinator Pengabdian Masyarakat',
-                'bio' => 'Dosen Keperawatan Komunitas dengan keahlian dalam promosi kesehatan masyarakat dan penanganan stunting.',
+                'position' => 'Koordinator Akademik Tahap Sarjana',
+                'bio' => 'Dosen Keperawatan Anak dengan keahlian asuhan keperawatan neonatus, pediatrik, dan stimulasi tumbuh kembang balita.',
                 'email' => 'theresia.avila@pantiwaluya.ac.id',
                 'phone' => '081234567893',
                 'order_index' => 3,
+            ]
+        );
+
+        TeamMember::updateOrCreate(
+            ['name' => 'Ns. Fransiskus Xaverius, M.Kes.'],
+            [
+                'title_degree' => 'M.Kes.',
+                'identifier' => 'NIDN. 0709048704',
+                'position' => 'Koordinator Laboratorium Keperawatan & OSCE',
+                'bio' => 'Dosen Keperawatan Gawat Darurat dan Kritis dengan sertifikasi instruktur BTCLS dan simulasi kebencanaan.',
+                'email' => 'fransiskus.xaverius@pantiwaluya.ac.id',
+                'phone' => '081234567894',
+                'order_index' => 4,
             ]
         );
 
@@ -265,104 +287,120 @@ class DatabaseSeeder extends Seeder
             [
                 'title_degree' => 'S.Kom.',
                 'identifier' => 'NIP. 202109004',
-                'position' => 'Staf Administrasi & Sentra HKI',
-                'bio' => 'Pengelola sistem informasi riset, repository dokumen LPPM, dan administrasi pendaftaran HKI.',
+                'position' => 'Staf Administrasi & Tata Usaha Prodi',
+                'bio' => 'Pengelola sistem informasi akademik prodi, administrasi persuratan, dan pelayanan berkas mahasiswa.',
                 'email' => 'antonius.joko@pantiwaluya.ac.id',
-                'phone' => '081234567894',
-                'order_index' => 4,
+                'phone' => '081234567895',
+                'order_index' => 5,
             ]
         );
 
-        // 7. Sample Events
+        // 7. Agenda Kegiatan Prodi
         Event::updateOrCreate(
-            ['slug' => 'seminar-nasional-keperawatan-dan-kesehatan-2025'],
+            ['slug' => 'ucap-janji-dan-capping-day-mahasiswa-keperawatan'],
             [
-                'title' => 'Seminar Nasional Kesehatan: Inovasi Asuhan Keperawatan Berbasis Bukti di Era Digital',
-                'location' => 'Auditorium STIKES Panti Waluya & Zoom Meeting',
+                'title' => 'Ucap Janji & Capping Day Mahasiswa S1 Keperawatan',
+                'location' => 'Auditorium STIKES Panti Waluya Malang',
                 'start_date' => now()->addDays(14)->setTime(8, 30),
-                'end_date' => now()->addDays(14)->setTime(16, 0),
-                'description' => 'Seminar nasional tahunan menghadirkan pakar kesehatan nasional dan internasional serta sesi oral presentation riset terpilih.',
-                'registration_link' => 'https://bit.ly/SemnasPantiwaluya2025',
-                'is_active' => true,
-            ]
-        );
-
-        Event::updateOrCreate(
-            ['slug' => 'batas-akhir-pengumpulan-laporan-kemajuan-hibah-internal'],
-            [
-                'title' => 'Deadline Unggah Laporan Kemajuan Hibah Internal 2025',
-                'location' => 'Portal Sistem LPPM Online',
-                'start_date' => now()->addDays(30)->setTime(23, 59),
-                'end_date' => now()->addDays(30)->setTime(23, 59),
-                'description' => 'Batas akhir pengunggahan laporan kemajuan 70% dan laporan penggunaan anggaran termin pertama bagi penerima hibah.',
+                'end_date' => now()->addDays(14)->setTime(13, 0),
+                'description' => 'Prosesi sakral pengucapan janji perawat dan pemasangan kap sebagai penanda kesiapan mahasiswa melangkah ke tahapan praktik klinik di rumah sakit.',
                 'registration_link' => '',
                 'is_active' => true,
             ]
         );
 
-        // 8. Sample Documents
+        Event::updateOrCreate(
+            ['slug' => 'simulasi-try-out-cbt-uji-kompetensi-ners-batch-1'],
+            [
+                'title' => 'Simulasi Try Out CBT Uji Kompetensi Ners (UKOM) Batch 1',
+                'location' => 'Laboratorium Komputer CBT Center STIKES Panti Waluya',
+                'start_date' => now()->addDays(28)->setTime(9, 0),
+                'end_date' => now()->addDays(28)->setTime(12, 30),
+                'description' => 'Simulasi ujian CBT berbasis komputer standar nasional untuk mengukur kesiapan materi, analisis kasus klinik, dan akurasi waktu mahasiswa.',
+                'registration_link' => '',
+                'is_active' => true,
+            ]
+        );
+
+        // 8. Dokumen & Buku Panduan Prodi
         Document::updateOrCreate(
-            ['title' => 'Buku Panduan Penelitian dan Pengabdian Masyarakat Edisi 2025'],
+            ['title' => 'Buku Pedoman Praktik Profesi Ners Edisi 2025'],
             [
                 'category_id' => $catDoc1->id,
-                'file_path' => 'documents/sample_panduan_lppm_2025.pdf',
+                'file_path' => 'documents/buku_pedoman_profesi_ners_2025.pdf',
                 'file_type' => 'PDF',
-                'file_size' => '2.4 MB',
-                'description' => 'Pedoman teknis pengusulan proposal, format laporan kemajuan, dan kriteria penilaian hibah internal.',
-                'downloads_count' => 320,
+                'file_size' => '3.1 MB',
+                'description' => 'Panduan lengkap capaian kompetensi, tata tertib, dan format evaluasi stase klinik profesi ners.',
+                'downloads_count' => 412,
                 'is_published' => true,
             ]
         );
 
         Document::updateOrCreate(
-            ['title' => 'Formulir Permohonan Kaji Etik Penelitian (KEPK)'],
+            ['title' => 'Buku Panduan Penulisan Skripsi & Karya Ilmiah Akhir Ners (KIAN)'],
             [
                 'category_id' => $catDoc2->id,
-                'file_path' => 'documents/form_pengajuan_etik.docx',
-                'file_type' => 'DOCX',
-                'file_size' => '450 KB',
-                'description' => 'Form isian protokol etik, informed consent, dan daftar tilang mandiri KEPK.',
-                'downloads_count' => 185,
+                'file_path' => 'documents/panduan_skripsi_kian.pdf',
+                'file_type' => 'PDF',
+                'file_size' => '2.5 MB',
+                'description' => 'Petunjuk teknis penulisan karya ilmiah, format laporan studi kasus asuhan keperawatan, dan tata cara sidang.',
+                'downloads_count' => 380,
                 'is_published' => true,
             ]
         );
 
         Document::updateOrCreate(
-            ['title' => 'SOP Pengajuan Insentif Publikasi Artikel Ilmiah'],
+            ['title' => 'Format Logbook Harian Praktik Klinik Keperawatan'],
             [
-                'category_id' => $catDoc1->id,
-                'file_path' => 'documents/sop_insentif_publikasi.pdf',
-                'file_type' => 'PDF',
-                'file_size' => '820 KB',
-                'description' => 'Prosedur operasional baku pencairan reward publikasi jurnal nasional Sinta dan Scopus.',
-                'downloads_count' => 97,
+                'category_id' => $catDoc3->id,
+                'file_path' => 'documents/format_logbook_klinik.docx',
+                'file_type' => 'DOCX',
+                'file_size' => '520 KB',
+                'description' => 'Format resmi pencatatan tindakan keperawatan mandiri, bimbingan preseptor, dan rekapitulasi presensi dinas.',
+                'downloads_count' => 295,
                 'is_published' => true,
             ]
         );
 
-        // 10. Sample Carousel Banner Slides
-        \App\Models\Carousel::updateOrCreate(
-            ['title' => 'Pusat Riset Kesehatan & Pengabdian Masyarakat Unggul'],
+        // 9. Banner Carousel Beranda
+        Carousel::updateOrCreate(
+            ['title' => 'Program Studi S1 Keperawatan & Pendidikan Profesi Ners'],
             [
-                'subtitle' => 'Mendorong inovasi asuhan kesehatan, publikasi internasional bereputasi, serta hilirisasi produk herbal terapan.',
+                'subtitle' => 'Mencetak Ners profesional, kompeten, inovatif, dan berkarakter kasih yang siap mengabdi di tingkat nasional maupun internasional.',
                 'image_path' => 'https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?auto=format&fit=crop&w=1920&q=80',
-                'button_text' => 'Jelajahi Layanan Divisi',
-                'button_link' => '/layanan',
+                'button_text' => 'Profil Program Studi',
+                'button_link' => '/profil',
                 'order_index' => 1,
                 'is_active' => true,
             ]
         );
 
-        \App\Models\Carousel::updateOrCreate(
-            ['title' => 'Layanan Kaji Etik Penelitian Kesehatan (Ethical Clearance)'],
+        Carousel::updateOrCreate(
+            ['title' => 'Laboratorium Keperawatan Komprehensif & OSCE Center'],
             [
-                'subtitle' => 'Fasilitasi telaah kelayakan etik penelitian untuk dosen, mahasiswa, dan peneliti eksternal secara terstandar.',
+                'subtitle' => 'Fasilitas simulasi rumah sakit terpadu untuk mengasah keterampilan klinis, komunikasi terapeutik, dan patient safety.',
                 'image_path' => 'https://images.unsplash.com/photo-1584515979956-d9f6e5d09982?auto=format&fit=crop&w=1920&q=80',
-                'button_text' => 'Ajukan Kaji Etik',
-                'button_link' => '/layanan/layanan-ethical-clearance-komisi-etik',
+                'button_text' => 'Jelajahi Layanan & Fasilitas',
+                'button_link' => '/layanan',
                 'order_index' => 2,
                 'is_active' => true,
             ]
         );
+
+        // 10. Navigasi Menu Default
+        $defaultMenus = [
+            ['label' => 'Beranda', 'url' => '/', 'target' => '_self', 'order_index' => 1, 'is_active' => true],
+            ['label' => 'Profil Prodi', 'url' => '/profil', 'target' => '_self', 'order_index' => 2, 'is_active' => true],
+            ['label' => 'Layanan Akademik', 'url' => '/layanan', 'target' => '_self', 'order_index' => 3, 'is_active' => true],
+            ['label' => 'Berita & Informasi', 'url' => '/berita', 'target' => '_self', 'order_index' => 4, 'is_active' => true],
+            ['label' => 'Agenda Kegiatan', 'url' => '/agenda', 'target' => '_self', 'order_index' => 5, 'is_active' => true],
+            ['label' => 'Pusat Unduhan', 'url' => '/unduhan', 'target' => '_self', 'order_index' => 6, 'is_active' => true],
+            ['label' => 'Galeri Foto', 'url' => '/galeri', 'target' => '_self', 'order_index' => 7, 'is_active' => true],
+            ['label' => 'Kontak Kami', 'url' => '/kontak', 'target' => '_self', 'order_index' => 8, 'is_active' => true],
+        ];
+
+        foreach ($defaultMenus as $menu) {
+            NavMenu::updateOrCreate(['url' => $menu['url']], $menu);
+        }
     }
 }
