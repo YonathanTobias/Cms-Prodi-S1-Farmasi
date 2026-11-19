@@ -288,7 +288,7 @@
 
 @if($isProdi)
 <!-- Dedicated Prodi Vision & Mission Section (Khusus Program Studi) -->
-<section class="py-16 lg:py-24 bg-gradient-to-b from-slate-50 to-white border-b border-slate-200/80">
+<section class="py-16 lg:py-24 bg-gradient-to-b from-slate-50 to-white dark:from-slate-900 dark:to-slate-950 border-b border-slate-200/80 dark:border-slate-800">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <!-- Section Header -->
         <div class="text-center max-w-3xl mx-auto space-y-3 mb-16">
@@ -296,23 +296,23 @@
                 <i class="fa-solid fa-graduation-cap"></i>
                 <span>Visi & Misi Program Studi</span>
             </div>
-            <h2 class="text-2xl sm:text-4xl font-extrabold text-slate-900 leading-tight">
+            <h2 class="text-2xl sm:text-4xl font-extrabold text-slate-900 dark:text-white leading-tight">
                 Arah Pendidikan & Komitmen Mutu Lulusan
             </h2>
-            <p class="text-xs sm:text-base text-slate-600">
+            <p class="text-xs sm:text-base text-slate-600 dark:text-slate-300">
                 Mencetak lulusan tenaga kesehatan yang unggul, profesional, beretika, dan berkarakter kasih.
             </p>
 
             <!-- Status Akreditasi & Jenjang Badges -->
             <div class="flex flex-wrap justify-center gap-2 pt-2">
                 @if(get_setting('prodi_degree'))
-                <span class="inline-flex items-center px-3 py-1 rounded-lg text-xs font-bold bg-sky-50 text-sky-800 border border-sky-200">
-                    <i class="fa-solid fa-award text-sky-600 mr-1.5"></i> Jenjang: {{ get_setting('prodi_degree') }}
+                <span class="inline-flex items-center px-3 py-1 rounded-lg text-xs font-bold bg-sky-50 dark:bg-sky-900/40 text-sky-800 dark:text-sky-300 border border-sky-200 dark:border-sky-700">
+                    <i class="fa-solid fa-award text-sky-600 dark:text-sky-400 mr-1.5"></i> Jenjang: {{ get_setting('prodi_degree') }}
                 </span>
                 @endif
                 @if(get_setting('prodi_accreditation'))
-                <span class="inline-flex items-center px-3 py-1 rounded-lg text-xs font-bold bg-emerald-50 text-emerald-800 border border-emerald-200">
-                    <i class="fa-solid fa-circle-check text-emerald-600 mr-1.5"></i> {{ get_setting('prodi_accreditation') }}
+                <span class="inline-flex items-center px-3 py-1 rounded-lg text-xs font-bold bg-emerald-50 dark:bg-emerald-900/40 text-emerald-800 dark:text-emerald-300 border border-emerald-200 dark:border-emerald-700">
+                    <i class="fa-solid fa-circle-check text-emerald-600 dark:text-emerald-400 mr-1.5"></i> {{ get_setting('prodi_accreditation') }}
                 </span>
                 @endif
             </div>
@@ -321,39 +321,39 @@
         <!-- Vision & Mission Grid -->
         <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch mb-12">
             <!-- Visi Card (5 cols) -->
-            <div class="lg:col-span-5 bg-white rounded-2xl p-7 shadow-sm border border-slate-200 flex flex-col justify-between relative group hover:shadow-md transition">
+            <div class="lg:col-span-5 bg-white dark:bg-slate-900 rounded-2xl p-7 shadow-sm border border-slate-200 dark:border-slate-800 flex flex-col justify-between relative group hover:shadow-md transition">
                 <div class="space-y-6 relative z-10">
                     <div class="flex items-center space-x-3">
                         <div class="w-12 h-12 rounded-xl flex items-center justify-center text-white text-xl shadow" style="background-color: var(--color-primary);">
                             <i class="fa-solid fa-compass"></i>
                         </div>
                         <div>
-                            <div class="text-[11px] uppercase tracking-wider text-slate-400 font-bold">Visi Keunggulan</div>
-                            <h3 class="text-xl font-black text-slate-900">Visi Program Studi</h3>
+                            <div class="text-[11px] uppercase tracking-wider text-slate-400 dark:text-slate-400 font-bold">Visi Keunggulan</div>
+                            <h3 class="text-xl font-black text-slate-900 dark:text-white">Visi Program Studi</h3>
                         </div>
                     </div>
 
-                    <blockquote class="text-sm sm:text-base text-slate-700 leading-relaxed italic bg-slate-50 p-6 rounded-xl border-l-4" style="border-left-color: var(--color-primary);">
+                    <blockquote class="text-sm sm:text-base text-slate-700 dark:text-slate-200 leading-relaxed italic bg-slate-50 dark:bg-slate-800/80 p-6 rounded-xl border-l-4" style="border-left-color: var(--color-primary);">
                         "{{ get_setting('vision', 'Menjadi Program Studi terkemuka yang menghasilkan lulusan unggul, kompeten, dan berkarakter kasih pada tahun 2030.') }}"
                     </blockquote>
                 </div>
 
-                <div class="pt-6 border-t border-slate-100 mt-6 relative z-10 flex items-center justify-between text-xs text-slate-500">
+                <div class="pt-6 border-t border-slate-100 dark:border-slate-800 mt-6 relative z-10 flex items-center justify-between text-xs text-slate-500 dark:text-slate-400">
                     <span class="flex items-center"><i class="fa-solid fa-shield-heart text-rose-500 mr-1.5"></i> Berkarakter Kasih</span>
-                    <span class="font-bold text-slate-700">{{ get_setting('division_short_name') }}</span>
+                    <span class="font-bold text-slate-700 dark:text-slate-300">{{ get_setting('division_short_name') }}</span>
                 </div>
             </div>
 
             <!-- Misi Card (7 cols) -->
-            <div class="lg:col-span-7 bg-white rounded-2xl p-7 shadow-sm border border-slate-200 flex flex-col justify-between relative group hover:shadow-md transition">
+            <div class="lg:col-span-7 bg-white dark:bg-slate-900 rounded-2xl p-7 shadow-sm border border-slate-200 dark:border-slate-800 flex flex-col justify-between relative group hover:shadow-md transition">
                 <div class="space-y-6">
                     <div class="flex items-center space-x-3">
-                        <div class="w-12 h-12 rounded-2xl bg-emerald-50 text-emerald-600 flex items-center justify-center text-xl shadow-sm border border-emerald-100">
+                        <div class="w-12 h-12 rounded-2xl bg-emerald-50 dark:bg-emerald-950/60 text-emerald-600 dark:text-emerald-400 flex items-center justify-center text-xl shadow-sm border border-emerald-100 dark:border-emerald-800">
                             <i class="fa-solid fa-bullseye"></i>
                         </div>
                         <div>
-                            <div class="text-[11px] uppercase tracking-wider text-slate-400 font-bold">Tri Dharma Perguruan Tinggi</div>
-                            <h3 class="text-xl font-black text-slate-900">Misi Program Studi</h3>
+                            <div class="text-[11px] uppercase tracking-wider text-slate-400 dark:text-slate-400 font-bold">Tri Dharma Perguruan Tinggi</div>
+                            <h3 class="text-xl font-black text-slate-900 dark:text-white">Misi Program Studi</h3>
                         </div>
                     </div>
 
@@ -363,11 +363,11 @@
                         @endphp
                         @foreach($missions as $m)
                             @if(trim($m))
-                            <div class="flex items-start space-x-3 bg-slate-50/80 p-3.5 rounded-xl border border-slate-100 hover:bg-slate-100/80 transition">
+                            <div class="flex items-start space-x-3 bg-slate-50/90 dark:bg-slate-800/90 p-3.5 rounded-xl border border-slate-100 dark:border-slate-700/80 hover:bg-slate-100/80 dark:hover:bg-slate-750 transition">
                                 <div class="w-6 h-6 rounded-lg flex items-center justify-center text-white text-xs font-bold flex-shrink-0 mt-0.5" style="background-color: var(--color-primary);">
                                     <i class="fa-solid fa-check text-[10px]"></i>
                                 </div>
-                                <div class="text-xs sm:text-sm text-slate-700 leading-relaxed font-medium">
+                                <div class="text-xs sm:text-sm text-slate-800 dark:text-slate-100 leading-relaxed font-medium">
                                     {{ preg_replace('/^\d+\.\s*/', '', trim($m)) }}
                                 </div>
                             </div>
@@ -376,7 +376,13 @@
                     </div>
                 </div>
 
-                <div class="pt-4 border-t border-slate-100 mt-6 flex items-center justify-between">
+                <div class="pt-4 border-t border-slate-100 dark:border-slate-800 mt-6 flex items-center justify-between">
+                    <a href="{{ route('profile') }}" class="text-xs font-bold text-theme-primary hover:underline flex items-center">
+                        Lihat Struktur Dosen & Kurikulum Lengkap <i class="fa-solid fa-arrow-right ml-1.5 text-[10px]"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
                     <a href="{{ route('profile') }}" class="text-xs font-bold text-theme-primary hover:underline flex items-center">
                         Lihat Struktur Dosen & Kurikulum Lengkap <i class="fa-solid fa-arrow-right ml-1.5 text-[10px]"></i>
                     </a>
@@ -497,31 +503,31 @@
 
 <!-- Division Services Grid -->
 @if(get_setting('enable_services', '1') !== '0' && $services->count() > 0)
-<section class="py-16 bg-slate-100/70 border-y border-slate-200">
+<section class="py-16 bg-slate-100/70 dark:bg-slate-900/90 border-y border-slate-200 dark:border-slate-800">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="text-center max-w-2xl mx-auto space-y-3 mb-12">
-            <div class="inline-flex items-center space-x-2 text-xs font-bold uppercase tracking-wider px-3 py-1 rounded-md text-theme-primary bg-white shadow-sm">
+            <div class="inline-flex items-center space-x-2 text-xs font-bold uppercase tracking-wider px-3 py-1 rounded-md text-theme-primary bg-white dark:bg-slate-800 shadow-sm">
                 <i class="fa-solid fa-list-check"></i>
                 <span>Layanan Kami</span>
             </div>
-            <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900">Layanan yang Kami Sediakan</h2>
-            <p class="text-xs sm:text-sm text-slate-500">Temukan berbagai layanan dan fasilitas yang disediakan oleh {{ get_setting('division_short_name', 'Divisi') }} untuk Anda.</p>
+            <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white">Layanan yang Kami Sediakan</h2>
+            <p class="text-xs sm:text-sm text-slate-500 dark:text-slate-400">Temukan berbagai layanan dan fasilitas yang disediakan oleh {{ get_setting('division_short_name', 'Divisi') }} untuk Anda.</p>
         </div>
 
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             @foreach($services as $svc)
-            <div class="bg-white rounded-2xl p-6 shadow-sm hover:shadow-md transition border border-slate-200 flex flex-col justify-between group">
+            <div class="bg-white dark:bg-slate-800/90 rounded-2xl p-6 shadow-sm hover:shadow-md transition border border-slate-200 dark:border-slate-700/80 flex flex-col justify-between group">
                 <div class="space-y-4">
                     <div class="w-12 h-12 rounded-xl flex items-center justify-center text-xl text-white transition group-hover:scale-110" style="background-color: var(--color-primary);">
                         <i class="{{ $svc->icon ?: 'fa-solid fa-briefcase-medical' }}"></i>
                     </div>
-                    <h3 class="text-lg font-bold text-slate-900 group-hover:text-theme-primary transition">{{ $svc->title }}</h3>
-                    <p class="text-xs text-slate-600 leading-relaxed line-clamp-3">
+                    <h3 class="text-lg font-bold text-slate-900 dark:text-white group-hover:text-theme-primary transition">{{ $svc->title }}</h3>
+                    <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed line-clamp-3">
                         {{ $svc->summary ?: Str::limit(strip_tags($svc->description), 120) }}
                     </p>
                 </div>
 
-                <div class="pt-6 border-t border-slate-100 mt-4 flex items-center justify-between">
+                <div class="pt-6 border-t border-slate-100 dark:border-slate-700/80 mt-4 flex items-center justify-between">
                     <a href="{{ route('services.detail', $svc->slug) }}" class="text-xs font-bold text-theme-primary flex items-center group-hover:underline">
                         Lihat Alur & Syarat <i class="fa-solid fa-arrow-right ml-1.5 text-[10px]"></i>
                     </a>
@@ -531,7 +537,7 @@
         </div>
 
         <div class="text-center mt-10">
-            <a href="{{ route('services') }}" class="inline-flex items-center px-6 py-3 rounded-xl bg-white border border-slate-300 font-bold text-xs text-slate-700 hover:bg-slate-50 shadow-sm transition">
+            <a href="{{ route('services') }}" class="inline-flex items-center px-6 py-3 rounded-xl bg-white dark:bg-slate-800 border border-slate-300 dark:border-slate-700 font-bold text-xs text-slate-700 dark:text-slate-200 hover:bg-slate-50 dark:hover:bg-slate-700 shadow-sm transition">
                 Lihat Seluruh Layanan <i class="fa-solid fa-arrow-right ml-2 text-xs"></i>
             </a>
         </div>

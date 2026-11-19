@@ -103,8 +103,8 @@
    Dark Mode Custom System
    ========================================================================== */
 .dark body {
-    background-color: #0b0f19;
-    color: #cbd5e1;
+    background-color: #0b0f19 !important;
+    color: #cbd5e1 !important;
 }
 
 .dark header {
@@ -120,19 +120,33 @@
     color: #38bdf8 !important;
 }
 
+/* Force sections with light gradients to be deep dark in dark mode */
+.dark section[class*="bg-gradient-"],
+.dark div[class*="bg-gradient-"],
+.dark [class*="bg-gradient-to-"] {
+    background-image: none !important;
+    background-color: #0b0f19 !important;
+}
+
+/* Section backgrounds */
+.dark section[class*="bg-slate-100"],
+.dark div[class*="bg-slate-100"],
+.dark [class*="bg-slate-100"] {
+    background-color: #0f172a !important;
+}
+
 .dark .bg-white {
     background-color: #131c2e !important;
-    color: #f1f5f9;
+    color: #f1f5f9 !important;
 }
 
 .dark .bg-slate-50,
 .dark [class*="bg-slate-50"] {
-    background-color: #0f172a !important;
+    background-color: #1a2234 !important;
 }
 
-.dark .bg-slate-100,
-.dark [class*="bg-slate-100"] {
-    background-color: #162032 !important;
+.dark .bg-slate-100 {
+    background-color: #0f172a !important;
 }
 
 .dark .bg-slate-200,
@@ -140,38 +154,22 @@
     background-color: #1e293b !important;
 }
 
-/* Gradients support in dark mode */
-.dark .from-slate-50,
-.dark [class*="from-slate-50"] {
-    --tw-gradient-from: #0b0f19 var(--tw-gradient-from-position) !important;
-    --tw-gradient-to: rgb(11 15 25 / 0) var(--tw-gradient-to-position) !important;
-    --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to) !important;
-}
-
-.dark .to-white,
-.dark [class*="to-white"] {
-    --tw-gradient-to: #0f172a var(--tw-gradient-to-position) !important;
-}
-
-.dark .to-slate-100,
-.dark [class*="to-slate-100"] {
-    --tw-gradient-to: #162032 var(--tw-gradient-to-position) !important;
-}
-
-.dark .text-slate-900 {
-    color: #f8fafc !important;
+/* High contrast typography in dark mode */
+.dark .text-slate-900,
+.dark h1, .dark h2, .dark h3, .dark h4 {
+    color: #ffffff !important;
 }
 
 .dark .text-slate-800 {
-    color: #f1f5f9 !important;
+    color: #f8fafc !important;
 }
 
 .dark .text-slate-700 {
-    color: #cbd5e1 !important;
+    color: #e2e8f0 !important;
 }
 
 .dark .text-slate-600 {
-    color: #94a3b8 !important;
+    color: #cbd5e1 !important;
 }
 
 .dark .text-slate-500 {
@@ -201,7 +199,8 @@
     background-color: rgba(14, 116, 144, 0.25) !important;
     border-color: rgba(14, 116, 144, 0.4) !important;
 }
-.dark [class*="text-sky-800"] {
+.dark [class*="text-sky-800"],
+.dark [class*="text-sky-700"] {
     color: #7dd3fc !important;
 }
 
@@ -209,7 +208,8 @@
     background-color: rgba(16, 185, 129, 0.25) !important;
     border-color: rgba(16, 185, 129, 0.4) !important;
 }
-.dark [class*="text-emerald-800"] {
+.dark [class*="text-emerald-800"],
+.dark [class*="text-emerald-700"] {
     color: #6ee7b7 !important;
 }
 
@@ -217,13 +217,14 @@
     background-color: rgba(245, 158, 11, 0.25) !important;
     border-color: rgba(245, 158, 11, 0.4) !important;
 }
-.dark [class*="text-amber-800"] {
+.dark [class*="text-amber-800"],
+.dark [class*="text-amber-700"] {
     color: #fcd34d !important;
 }
 
 .dark [class*="hover:bg-slate-100"]:hover,
 .dark [class*="hover:bg-slate-50"]:hover {
-    background-color: #1e293b !important;
+    background-color: #242f45 !important;
 }
 
 .dark .shadow-sm,

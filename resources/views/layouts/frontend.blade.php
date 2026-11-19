@@ -40,8 +40,8 @@
     <!-- FontAwesome 6 -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     
-    <!-- Custom Separated Stylesheet -->
-    <link rel="stylesheet" href="{{ asset('css/frontend.css') }}">
+    <!-- Custom Separated Stylesheet (Auto Cache-Busting) -->
+    <link rel="stylesheet" href="{{ asset('css/frontend.css') }}?v={{ file_exists(public_path('css/frontend.css')) ? filemtime(public_path('css/frontend.css')) : time() }}">
     
     <!-- Alpine.js -->
     <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
