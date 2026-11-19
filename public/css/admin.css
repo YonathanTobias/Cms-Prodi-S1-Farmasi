@@ -1,0 +1,286 @@
+/**
+ * CMS Divisi & Prodi STIKES Panti Waluya
+ * Admin Panel Stylesheet
+ */
+
+/* Theme Color Utilities */
+.bg-theme-primary {
+    background-color: var(--color-primary, #0e7490);
+}
+
+.text-theme-primary {
+    color: var(--color-primary, #0e7490);
+}
+
+.border-theme-primary {
+    border-color: var(--color-primary, #0e7490);
+}
+
+.hover\:bg-theme-primary:hover {
+    background-color: var(--color-primary, #0e7490);
+}
+
+.hover\:text-theme-primary:hover {
+    color: var(--color-primary, #0e7490);
+}
+
+/* Custom Scrollbar for Admin */
+::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+}
+
+::-webkit-scrollbar-track {
+    background: #1e293b;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #475569;
+    border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #64748b;
+}
+
+/* Custom Sleek Sidebar Scrollbar */
+.sidebar-scroll::-webkit-scrollbar {
+    width: 4px;
+}
+
+.sidebar-scroll::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.sidebar-scroll::-webkit-scrollbar-thumb {
+    background: #334155;
+    border-radius: 4px;
+}
+
+.sidebar-scroll::-webkit-scrollbar-thumb:hover {
+    background: #64748b;
+}
+
+/* Custom Quill Editor Styles */
+.ql-toolbar.ql-snow {
+    border-top-left-radius: 0.75rem;
+    border-top-right-radius: 0.75rem;
+    border-color: #e2e8f0;
+    background-color: #f8fafc;
+}
+
+.ql-container.ql-snow {
+    border-bottom-left-radius: 0.75rem;
+    border-bottom-right-radius: 0.75rem;
+    border-color: #e2e8f0;
+    font-family: inherit;
+    font-size: 0.875rem;
+    min-height: 220px;
+}
+
+.ql-editor {
+    min-height: 220px;
+    font-size: 0.875rem;
+    line-height: 1.6;
+}
+
+/* Table styling helpers */
+.admin-table th {
+    letter-spacing: 0.05em;
+}
+
+.admin-table tr {
+    transition: background-color 0.15s ease;
+}
+
+/* ==========================================================================
+   Admin Dark Mode Custom System
+   ========================================================================== */
+.dark body {
+    background-color: #090d16 !important;
+    color: #cbd5e1;
+}
+
+.dark header {
+    background-color: #0f172a !important;
+    border-color: #1e293b !important;
+}
+
+.dark aside {
+    background-color: #0b0f19 !important;
+    border-color: #1e293b !important;
+}
+
+.dark .bg-white {
+    background-color: #131c2e !important;
+    color: #f1f5f9;
+}
+
+.dark .bg-slate-50 {
+    background-color: #0f172a !important;
+}
+
+.dark .bg-slate-100 {
+    background-color: #1e293b !important;
+}
+
+.dark .text-slate-900 {
+    color: #f8fafc !important;
+}
+
+.dark .text-slate-800 {
+    color: #f1f5f9 !important;
+}
+
+.dark .text-slate-700 {
+    color: #cbd5e1 !important;
+}
+
+.dark .text-slate-600 {
+    color: #94a3b8 !important;
+}
+
+.dark .text-slate-500 {
+    color: #94a3b8 !important;
+}
+
+.dark .border-slate-200,
+.dark .border-slate-100 {
+    border-color: #1e293b !important;
+}
+
+.dark .border-slate-300 {
+    border-color: #334155 !important;
+}
+
+.dark input:not([type="checkbox"]):not([type="radio"]),
+.dark select,
+.dark textarea {
+    background-color: #0f172a !important;
+    color: #f8fafc !important;
+    border-color: #334155 !important;
+}
+
+.dark input:not([type="checkbox"]):not([type="radio"]):focus,
+.dark select:focus,
+.dark textarea:focus {
+    border-color: var(--color-primary, #0e7490) !important;
+}
+
+.dark .ql-toolbar.ql-snow {
+    background-color: #0f172a !important;
+    border-color: #334155 !important;
+}
+
+.dark .ql-toolbar.ql-snow .ql-stroke {
+    stroke: #94a3b8 !important;
+}
+
+.dark .ql-toolbar.ql-snow .ql-fill {
+    fill: #94a3b8 !important;
+}
+
+.dark .ql-toolbar.ql-snow .ql-picker-label {
+    color: #94a3b8 !important;
+}
+
+.dark .ql-container.ql-snow {
+    background-color: #0b0f19 !important;
+    color: #f1f5f9 !important;
+    border-color: #334155 !important;
+}
+
+.dark .shadow-sm,
+.dark .shadow-md,
+.dark .shadow-lg {
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.45) !important;
+}
+
+/* Dark Mode Tints & Callouts */
+.dark .bg-amber-50 {
+    background-color: rgba(69, 26, 3, 0.45) !important;
+    border-color: rgba(180, 83, 9, 0.4) !important;
+    color: #fef3c7 !important;
+}
+
+.dark .text-amber-900,
+.dark .text-amber-800 {
+    color: #fde68a !important;
+}
+
+.dark .bg-sky-50,
+.dark .bg-sky-50\/60 {
+    background-color: rgba(8, 47, 73, 0.45) !important;
+    border-color: rgba(14, 116, 144, 0.4) !important;
+    color: #e0f2fe !important;
+}
+
+.dark .text-sky-800,
+.dark .text-sky-900 {
+    color: #bae6fd !important;
+}
+
+.dark .bg-emerald-50 {
+    background-color: rgba(6, 78, 59, 0.4) !important;
+    border-color: rgba(5, 150, 105, 0.4) !important;
+    color: #d1fae5 !important;
+}
+
+.dark .text-emerald-800,
+.dark .text-emerald-900 {
+    color: #a7f3d0 !important;
+}
+
+.dark .bg-rose-50 {
+    background-color: rgba(76, 5, 25, 0.4) !important;
+    border-color: rgba(225, 29, 72, 0.4) !important;
+    color: #ffe4e6 !important;
+}
+
+.dark .text-rose-800,
+.dark .text-rose-700 {
+    color: #fecdd3 !important;
+}
+
+.dark .bg-purple-50,
+.dark .bg-purple-50\/40 {
+    background-color: rgba(59, 7, 100, 0.4) !important;
+    border-color: rgba(126, 34, 206, 0.4) !important;
+}
+
+/* Gradients in light containers */
+.dark .bg-gradient-to-br.from-slate-50,
+.dark .bg-gradient-to-r.from-slate-50 {
+    background-image: none !important;
+    background-color: #0f172a !important;
+}
+
+/* Tables in Dark Mode */
+.dark table {
+    border-color: #1e293b !important;
+}
+
+.dark thead {
+    background-color: #0b0f19 !important;
+    border-color: #1e293b !important;
+}
+
+.dark th {
+    color: #94a3b8 !important;
+}
+
+.dark td {
+    border-color: #1e293b !important;
+    color: #cbd5e1 !important;
+}
+
+.dark tr:hover {
+    background-color: #1a2438 !important;
+}
+
+/* Dropdown menus & Modals */
+.dark .divide-slate-100 > :not([hidden]) ~ :not([hidden]),
+.dark .divide-slate-200 > :not([hidden]) ~ :not([hidden]) {
+    border-color: #1e293b !important;
+}
+
