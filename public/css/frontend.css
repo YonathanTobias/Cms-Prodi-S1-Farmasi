@@ -120,14 +120,6 @@
     color: #38bdf8 !important;
 }
 
-/* Force sections with light gradients to be deep dark in dark mode */
-.dark section[class*="bg-gradient-"],
-.dark div[class*="bg-gradient-"],
-.dark [class*="bg-gradient-to-"] {
-    background-image: none !important;
-    background-color: #0b0f19 !important;
-}
-
 /* Section backgrounds */
 .dark section[class*="bg-slate-100"],
 .dark div[class*="bg-slate-100"],
