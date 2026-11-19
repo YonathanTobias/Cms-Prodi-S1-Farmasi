@@ -288,7 +288,7 @@
 
 @if($isProdi)
 <!-- Dedicated Prodi Vision & Mission Section (Khusus Program Studi) -->
-<section class="py-16 lg:py-24 bg-gradient-to-b from-slate-50 to-white dark:from-slate-900 dark:to-slate-950 border-b border-slate-200/80 dark:border-slate-800">
+<section class="py-16 lg:py-24 bg-slate-50 dark:bg-slate-950 border-b border-slate-200/80 dark:border-slate-800">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <!-- Section Header -->
         <div class="text-center max-w-3xl mx-auto space-y-3 mb-16">
@@ -367,7 +367,7 @@
                                 <div class="w-6 h-6 rounded-lg flex items-center justify-center text-white text-xs font-bold flex-shrink-0 mt-0.5" style="background-color: var(--color-primary);">
                                     <i class="fa-solid fa-check text-[10px]"></i>
                                 </div>
-                                <div class="text-xs sm:text-sm text-slate-800 dark:text-slate-100 leading-relaxed font-medium">
+                                <div class="text-xs sm:text-sm text-slate-900 dark:text-white leading-relaxed font-bold">
                                     {{ preg_replace('/^\d+\.\s*/', '', trim($m)) }}
                                 </div>
                             </div>

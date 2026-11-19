@@ -156,23 +156,21 @@
 
 /* High contrast typography in dark mode */
 .dark .text-slate-900,
+.dark .text-slate-800,
+.dark .text-slate-700,
 .dark h1, .dark h2, .dark h3, .dark h4 {
     color: #ffffff !important;
 }
 
-.dark .text-slate-800 {
-    color: #f8fafc !important;
-}
-
-.dark .text-slate-700 {
+.dark .text-slate-600 {
     color: #e2e8f0 !important;
 }
 
-.dark .text-slate-600 {
+.dark .text-slate-500 {
     color: #cbd5e1 !important;
 }
 
-.dark .text-slate-500 {
+.dark .text-slate-400 {
     color: #94a3b8 !important;
 }
 
