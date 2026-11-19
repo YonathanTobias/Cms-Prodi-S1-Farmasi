@@ -80,11 +80,19 @@ class ServiceController extends Controller
     /**
      * Toggle the entire services module on/off for public site
      */
-    public function toggleModule()
+    public function toggleModule(Request $request)
     {
-        $current = get_setting('enable_services', '1');
-        $newStatus = ($current === '0') ? '1' : '0';
-        \App\Models\Setting::updateOrCreate(['key' => 'enable_services'], ['value' => $newStatus, 'group' => 'general']);
+        \App\Models\Setting::clearCache();
+
+        if ($request->filled('target_status')) {
+            $newStatus = $request->input('target_status') === '1' ? '1' : '0';
+        } else {
+            $current = (string) get_setting('enable_services', '1');
+            $newStatus = in_array($current, ['0', 'false', 'off', ''], true) ? '1' : '0';
+        }
+
+        \App\Models\Setting::set('enable_services', $newStatus);
+        \App\Models\Setting::clearCache();
 
         $message = ($newStatus === '1')
             ? 'Fitur Layanan Divisi berhasil DIAKTIFKAN (ON). Modul dan menu Layanan sekarang tampil di website publik.'

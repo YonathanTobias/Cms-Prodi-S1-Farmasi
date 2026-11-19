@@ -48,6 +48,7 @@
 
         <form action="{{ route('admin.services.toggle-module') }}" method="POST" class="flex-shrink-0">
             @csrf
+            <input type="hidden" name="target_status" value="{{ $servicesActive ? '0' : '1' }}">
             <button type="submit" class="px-5 py-2.5 rounded-xl font-bold text-xs uppercase tracking-wider shadow transition flex items-center space-x-2 {{ $servicesActive ? 'bg-amber-600 hover:bg-amber-700 text-white' : 'bg-emerald-600 hover:bg-emerald-700 text-white' }}">
                 <i class="fa-solid fa-power-off"></i>
                 <span>{{ $servicesActive ? 'Matikan Fitur (Turn OFF)' : 'Nyalakan Fitur (Turn ON)' }}</span>
