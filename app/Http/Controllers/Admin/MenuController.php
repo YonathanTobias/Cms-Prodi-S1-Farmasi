@@ -14,6 +14,11 @@ class MenuController extends Controller
      */
     public function index()
     {
+        // Jika database menu masih kosong, otomatis isi dengan susunan menu standar
+        if (NavMenu::count() === 0) {
+            NavMenu::resetToDefaults();
+        }
+
         $menus = NavMenu::with('parent')->ordered()->get();
         $parentMenus = NavMenu::whereNull('parent_id')->ordered()->get();
         $pages = Page::published()->get();
