@@ -61,7 +61,7 @@ Route::post('/kontak/kirim', [HomeController::class, 'sendMessage'])->name('cont
 |--------------------------------------------------------------------------
 */
 Route::get('/sugar', [AuthController::class, 'showLoginForm'])->name('admin.login');
-Route::post('/sugar', [AuthController::class, 'login'])->name('admin.login.submit');
+Route::post('/sugar', [AuthController::class, 'login'])->middleware('throttle:5,1')->name('admin.login.submit');
 
 Route::prefix('admin')->name('admin.')->group(function () {
     Route::post('/logout', [AuthController::class, 'logout'])->name('logout');

@@ -15,17 +15,6 @@ class AuthController extends Controller
             return redirect()->route('admin.dashboard');
         }
 
-        // Ensure default admin (berita) user exists
-        \App\Models\User::updateOrCreate(
-            ['email' => 'berita@pantiwaluya.ac.id'],
-            [
-                'name' => 'Admin Berita & Publikasi',
-                'role' => 'admin',
-                'password' => Hash::make('password123'),
-                'email_verified_at' => now(),
-            ]
-        );
-
         return view('admin.auth.login');
     }
 
