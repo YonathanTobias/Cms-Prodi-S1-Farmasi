@@ -213,8 +213,8 @@
                 <div class="space-y-2 p-4 bg-slate-50 rounded-xl border border-slate-200">
                     <label class="text-xs font-bold text-slate-700 block">Warna Utama (Primary)</label>
                     <div class="flex items-center space-x-3">
-                        <input type="color" name="theme_primary_color" value="{{ old('theme_primary_color', $settings['theme_primary_color'] ?? '#0e7490') }}" class="w-12 h-10 rounded-lg cursor-pointer border-0 bg-transparent">
-                        <span class="text-xs font-mono font-bold text-slate-600">{{ $settings['theme_primary_color'] ?? '#0e7490' }}</span>
+                        <input type="color" name="theme_primary_color" value="{{ old('theme_primary_color', $settings['theme_primary_color'] ?? '#eab308') }}" class="w-12 h-10 rounded-lg cursor-pointer border-0 bg-transparent">
+                        <span class="text-xs font-mono font-bold text-slate-600">{{ $settings['theme_primary_color'] ?? '#eab308' }}</span>
                     </div>
                     <p class="text-[11px] text-slate-500">Warna untuk tombol utama, header hero, dan badge.</p>
                 </div>
@@ -223,8 +223,8 @@
                 <div class="space-y-2 p-4 bg-slate-50 rounded-xl border border-slate-200">
                     <label class="text-xs font-bold text-slate-700 block">Warna Sekunder (Secondary)</label>
                     <div class="flex items-center space-x-3">
-                        <input type="color" name="theme_secondary_color" value="{{ old('theme_secondary_color', $settings['theme_secondary_color'] ?? '#0369a1') }}" class="w-12 h-10 rounded-lg cursor-pointer border-0 bg-transparent">
-                        <span class="text-xs font-mono font-bold text-slate-600">{{ $settings['theme_secondary_color'] ?? '#0369a1' }}</span>
+                        <input type="color" name="theme_secondary_color" value="{{ old('theme_secondary_color', $settings['theme_secondary_color'] ?? '#ca8a04') }}" class="w-12 h-10 rounded-lg cursor-pointer border-0 bg-transparent">
+                        <span class="text-xs font-mono font-bold text-slate-600">{{ $settings['theme_secondary_color'] ?? '#ca8a04' }}</span>
                     </div>
                     <p class="text-[11px] text-slate-500">Warna gradien samping pada banner hero.</p>
                 </div>

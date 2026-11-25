@@ -51,7 +51,8 @@
     <!-- Dynamic Theme Color Variables -->
     <style>
         :root {
-            --color-primary: {{ get_setting('theme_primary_color', '#0e7490') }};
+            --color-primary: {{ get_setting('theme_primary_color', '#eab308') }};
+            --color-secondary: {{ get_setting('theme_secondary_color', '#ca8a04') }};
         }
     </style>
 </head>

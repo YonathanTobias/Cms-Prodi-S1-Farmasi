@@ -15,8 +15,8 @@
 
     <style>
         :root {
-            --color-primary: {{ get_setting('theme_primary_color', '#0e7490') }};
-            --color-secondary: {{ get_setting('theme_secondary_color', '#0369a1') }};
+            --color-primary: {{ get_setting('theme_primary_color', '#eab308') }};
+            --color-secondary: {{ get_setting('theme_secondary_color', '#ca8a04') }};
         }
         .bg-theme-primary { background-color: var(--color-primary); }
     </style>
@@ -30,11 +30,11 @@
     <div class="max-w-md w-full relative z-10 space-y-6">
         <!-- Logo & Header -->
         <div class="text-center space-y-2">
-            <div class="w-16 h-16 rounded-2xl mx-auto flex items-center justify-center text-white text-3xl shadow-xl overflow-hidden" style="background: linear-gradient(135deg, var(--color-primary), var(--color-secondary));">
+            <div class="w-16 h-16 rounded-2xl mx-auto flex items-center justify-center text-slate-900 text-3xl shadow-xl overflow-hidden" style="background: linear-gradient(135deg, var(--color-primary), var(--color-secondary));">
                 @if(get_setting('logo_url'))
                     <img src="{{ get_setting('logo_url') }}" alt="Logo" class="w-12 h-12 object-contain">
                 @else
-                    <i class="{{ get_setting('division_icon', 'fa-solid fa-hospital-user') }}"></i>
+                    <i class="{{ get_setting('division_icon', 'fa-solid fa-prescription-bottle-medical') }}"></i>
                 @endif
             </div>
             <h1 class="text-xl font-bold text-white tracking-tight">Panel Administrator CMS</h1>
@@ -94,7 +94,7 @@
                 </div>
 
                 <div class="pt-2">
-                    <button type="submit" class="w-full py-3 rounded-xl bg-theme-primary text-white font-bold text-xs uppercase tracking-wider shadow-lg hover:opacity-90 transition">
+                    <button type="submit" class="w-full py-3 rounded-xl bg-theme-primary text-slate-900 font-bold text-xs uppercase tracking-wider shadow-lg hover:brightness-95 transition">
                         Masuk ke Dashboard
                     </button>
                 </div>

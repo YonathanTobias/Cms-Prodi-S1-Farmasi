@@ -21,8 +21,8 @@
 
     <style>
         :root {
-            --color-primary: {{ get_setting('theme_primary_color', '#0e7490') }};
-            --color-secondary: {{ get_setting('theme_secondary_color', '#0284c7') }};
+            --color-primary: {{ get_setting('theme_primary_color', '#eab308') }};
+            --color-secondary: {{ get_setting('theme_secondary_color', '#ca8a04') }};
             --elementor-pink: #d63384;
             --elementor-dark-pink: #92003b;
             --elementor-panel-bg: #202328;
@@ -748,8 +748,8 @@ box-shadow: 0 10px 25px rgba(0,0,0,0.3);" class="w-full bg-[#121417] border bord
                 const styleEl = doc.createElement('style');
                 styleEl.innerHTML = `
                     :root {
-                        --color-primary: {{ get_setting('theme_primary_color', '#0e7490') }};
-                        --color-secondary: {{ get_setting('theme_secondary_color', '#0284c7') }};
+                        --color-primary: {{ get_setting('theme_primary_color', '#eab308') }};
+                        --color-secondary: {{ get_setting('theme_secondary_color', '#ca8a04') }};
                     }
                     body {
                         font-family: 'Plus Jakarta Sans', sans-serif;

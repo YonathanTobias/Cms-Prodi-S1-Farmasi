@@ -1,7 +1,7 @@
 @extends('layouts.frontend')
 
-@section('title', 'Dosen & Tenaga Kependidikan (Tendik) - ' . get_setting('division_name', 'Prodi Keperawatan'))
-@section('meta_description', 'Daftar dosen tetap, dosen spesialis keperawatan, dan tenaga kependidikan Program Studi S1 Keperawatan & Profesi Ners STIKES Panti Waluya Malang.')
+@section('title', 'Dosen & Tenaga Kependidikan (Tendik) - ' . get_setting('division_name', 'Prodi S1 Farmasi'))
+@section('meta_description', 'Daftar dosen tetap, pakar sains farmasi & klinis, serta tenaga kependidikan ' . get_setting('division_name', 'Program Studi S1 Farmasi') . ' ' . get_setting('parent_institution', 'STIKES Panti Waluya Malang') . '.')
 
 @section('content')
 <!-- Header Hero Banner -->
@@ -18,7 +18,7 @@
                 <span class="text-theme-primary font-bold">Dosen & Tendik</span>
             </nav>
 
-            <div class="inline-flex items-center space-x-2 text-xs font-bold uppercase tracking-wider px-3.5 py-1.5 rounded-full text-sky-400 bg-sky-950/80 border border-sky-800/60">
+            <div class="inline-flex items-center space-x-2 text-xs font-bold uppercase tracking-wider px-3.5 py-1.5 rounded-full text-amber-400 bg-amber-950/80 border border-amber-800/60">
                 <i class="fa-solid fa-users-line"></i>
                 <span>Sumber Daya Manusia Unggul</span>
             </div>
@@ -28,7 +28,7 @@
             </h1>
 
             <p class="text-sm sm:text-base text-slate-300 leading-relaxed">
-                Profil pendidik profesional, ners spesialis, dan tenaga kependidikan berdedikasi yang membimbing mahasiswa menjadi perawat kompeten dan berkarakter kasih.
+                Profil tenaga pendidik profesional, pakar kefarmasian, dan tenaga kependidikan berdedikasi yang membimbing mahasiswa menjadi sarjana farmasi yang unggul, beretika, dan berkarakter kasih.
             </p>
         </div>
     </div>
@@ -206,17 +206,17 @@
         <!-- Banner Diagram Struktur Organisasi (Call to Action) -->
         <div class="mt-12 bg-gradient-to-r from-slate-900 to-slate-800 rounded-3xl p-6 sm:p-10 text-white flex flex-col md:flex-row items-center justify-between gap-6 shadow-xl border border-slate-700/60">
             <div class="space-y-2 text-center md:text-left">
-                <div class="inline-flex items-center space-x-2 text-[11px] font-bold uppercase tracking-wider px-3 py-1 rounded-full text-sky-400 bg-sky-950/80 border border-sky-800/60">
+                <div class="inline-flex items-center space-x-2 text-[11px] font-bold uppercase tracking-wider px-3 py-1 rounded-full text-amber-400 bg-amber-950/80 border border-amber-800/60">
                     <i class="fa-solid fa-sitemap"></i>
                     <span>Hierarki Organisasi</span>
                 </div>
                 <h3 class="text-xl sm:text-2xl font-bold text-white">Lihat Bagan Struktur Organisasi Lengkap</h3>
                 <p class="text-xs sm:text-sm text-slate-300 max-w-xl">
-                    Ketahui tata kelola kepemimpinan, unit koordinasi sarjana & profesi, serta laboratorium pendidikan di Program Studi S1 Keperawatan & Profesi Ners.
+                    Ketahui tata kelola kepemimpinan, unit koordinasi akademik, serta laboratorium pendidikan di {{ get_setting('division_name', 'Program Studi S1 Farmasi') }}.
                 </p>
             </div>
             <a href="{{ route('profile') }}#struktur" class="px-6 py-3.5 rounded-2xl bg-white text-slate-900 hover:bg-slate-100 font-extrabold text-xs uppercase tracking-wider shadow-lg transition flex items-center whitespace-nowrap flex-shrink-0">
-                <i class="fa-solid fa-diagram-project mr-2 text-sky-600"></i> Buka Bagan Struktur Organisasi
+                <i class="fa-solid fa-diagram-project mr-2 text-amber-600"></i> Buka Bagan Struktur Organisasi
             </a>
         </div>
 

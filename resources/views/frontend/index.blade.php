@@ -393,7 +393,7 @@
                         <i class="fa-solid fa-user-graduate"></i>
                         <span>Profil Lulusan Utama</span>
                     </div>
-                    <h3 class="text-xl sm:text-2xl font-extrabold text-white">Prospek & Peran Lulusan Ners</h3>
+                    <h3 class="text-xl sm:text-2xl font-extrabold text-white">Prospek & Peran Lulusan {{ get_setting('division_acronym', 'S1 Farmasi') }}</h3>
                     <p class="text-xs sm:text-sm text-slate-300 leading-relaxed font-normal">
                         {{ get_setting('prodi_graduate_profile') }}
                     </p>
@@ -413,13 +413,13 @@
 
             <!-- Role Highlights Grid -->
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 pt-6">
-                <div class="flex items-center space-x-3.5 p-4 rounded-2xl bg-slate-800/80 dark:bg-slate-800/60 border border-slate-700/80 hover:border-sky-500/50 transition group">
-                    <div class="w-10 h-10 rounded-xl bg-sky-500/15 text-sky-400 flex items-center justify-center shrink-0 text-base group-hover:scale-105 transition">
-                        <i class="fa-solid fa-hand-holding-medical"></i>
+                <div class="flex items-center space-x-3.5 p-4 rounded-2xl bg-slate-800/80 dark:bg-slate-800/60 border border-slate-700/80 hover:border-amber-500/50 transition group">
+                    <div class="w-10 h-10 rounded-xl bg-amber-500/15 text-amber-400 flex items-center justify-center shrink-0 text-base group-hover:scale-105 transition">
+                        <i class="fa-solid fa-mortar-pestle"></i>
                     </div>
                     <div>
-                        <div class="text-xs font-bold text-white group-hover:text-sky-300 transition">Care Provider</div>
-                        <div class="text-[11px] text-slate-400 mt-0.5">Asuhan Keperawatan Komprehensif</div>
+                        <div class="text-xs font-bold text-white group-hover:text-amber-300 transition">Care Provider</div>
+                        <div class="text-[11px] text-slate-400 mt-0.5">Pelayanan Kefarmasian & Klinis</div>
                     </div>
                 </div>
 
@@ -429,27 +429,27 @@
                     </div>
                     <div>
                         <div class="text-xs font-bold text-white group-hover:text-emerald-300 transition">Communicator</div>
-                        <div class="text-[11px] text-slate-400 mt-0.5">Edukator & Promosi Kesehatan</div>
+                        <div class="text-[11px] text-slate-400 mt-0.5">Edukator Obat & Konseling Pasien</div>
                     </div>
                 </div>
 
-                <div class="flex items-center space-x-3.5 p-4 rounded-2xl bg-slate-800/80 dark:bg-slate-800/60 border border-slate-700/80 hover:border-amber-500/50 transition group">
-                    <div class="w-10 h-10 rounded-xl bg-amber-500/15 text-amber-400 flex items-center justify-center shrink-0 text-base group-hover:scale-105 transition">
-                        <i class="fa-solid fa-user-tie"></i>
+                <div class="flex items-center space-x-3.5 p-4 rounded-2xl bg-slate-800/80 dark:bg-slate-800/60 border border-slate-700/80 hover:border-sky-500/50 transition group">
+                    <div class="w-10 h-10 rounded-xl bg-sky-500/15 text-sky-400 flex items-center justify-center shrink-0 text-base group-hover:scale-105 transition">
+                        <i class="fa-solid fa-industry"></i>
                     </div>
                     <div>
-                        <div class="text-xs font-bold text-white group-hover:text-amber-300 transition">Manager & Leader</div>
-                        <div class="text-[11px] text-slate-400 mt-0.5">Pengelola Layanan & Tim Medis</div>
+                        <div class="text-xs font-bold text-white group-hover:text-sky-300 transition">Manager & Formulator</div>
+                        <div class="text-[11px] text-slate-400 mt-0.5">Pengelola Apotek & Industri Farmasi</div>
                     </div>
                 </div>
 
                 <div class="flex items-center space-x-3.5 p-4 rounded-2xl bg-slate-800/80 dark:bg-slate-800/60 border border-slate-700/80 hover:border-purple-500/50 transition group">
                     <div class="w-10 h-10 rounded-xl bg-purple-500/15 text-purple-400 flex items-center justify-center shrink-0 text-base group-hover:scale-105 transition">
-                        <i class="fa-solid fa-microscope"></i>
+                        <i class="fa-solid fa-flask-vial"></i>
                     </div>
                     <div>
                         <div class="text-xs font-bold text-white group-hover:text-purple-300 transition">Researcher</div>
-                        <div class="text-[11px] text-slate-400 mt-0.5">Peneliti Keperawatan Pemula</div>
+                        <div class="text-[11px] text-slate-400 mt-0.5">Peneliti Bahan Alam & Obat Inovatif</div>
                     </div>
                 </div>
             </div>
