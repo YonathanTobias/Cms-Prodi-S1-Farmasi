@@ -21,6 +21,45 @@ class SettingController extends Controller
     }
 
     /**
+     * Dedicated Visi & Misi edit form
+     */
+    public function visionMission()
+    {
+        $vision = Setting::get('vision', '');
+        $mission = Setting::get('mission', '');
+        $aboutTitle = Setting::get('about_title', 'Profil & Visi Misi');
+        $aboutDescription = Setting::get('about_description', '');
+
+        return view('admin.settings.vision_mission', compact('vision', 'mission', 'aboutTitle', 'aboutDescription'));
+    }
+
+    /**
+     * Update Visi & Misi
+     */
+    public function updateVisionMission(Request $request)
+    {
+        $request->validate([
+            'vision' => 'required|string',
+            'mission' => 'required|string',
+            'about_title' => 'nullable|string|max:150',
+            'about_description' => 'nullable|string',
+        ]);
+
+        Setting::set('vision', $request->vision);
+        Setting::set('mission', $request->mission);
+        if ($request->filled('about_title')) {
+            Setting::set('about_title', $request->about_title);
+        }
+        if ($request->has('about_description')) {
+            Setting::set('about_description', $request->about_description ?? '');
+        }
+
+        Setting::clearCache();
+
+        return back()->with('success', 'Visi, Misi, dan Profil Program Studi berhasil diperbarui!');
+    }
+
+    /**
      * Update settings
      */
     public function update(Request $request)

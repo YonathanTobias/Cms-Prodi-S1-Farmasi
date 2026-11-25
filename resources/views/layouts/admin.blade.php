@@ -209,6 +209,16 @@
                         <span class="px-1.5 py-0.5 rounded text-[9px] font-extrabold bg-purple-500/20 text-purple-300 border border-purple-500/30">Studio</span>
                     @endif
                 </a>
+
+                <a href="{{ route('admin.settings.vision-mission') }}" class="group relative flex items-center px-3 py-2 rounded-xl text-xs font-semibold transition-all duration-150 {{ request()->routeIs('admin.settings.vision-mission*') ? 'bg-theme-primary text-white font-bold shadow-lg shadow-theme-primary/25' : 'text-slate-400 hover:text-white hover:bg-slate-800/80 hover:translate-x-0.5' }}">
+                    @if(request()->routeIs('admin.settings.vision-mission*'))
+                        <span class="absolute left-0 top-2 bottom-2 w-1 rounded-r-full bg-white"></span>
+                    @endif
+                    <div class="w-7 h-7 rounded-lg flex items-center justify-center mr-2.5 transition {{ request()->routeIs('admin.settings.vision-mission*') ? 'bg-white/20 text-white' : 'bg-slate-800 text-slate-400 group-hover:text-white group-hover:bg-slate-700/80' }}">
+                        <i class="fa-solid fa-bullseye text-xs"></i>
+                    </div>
+                    <span>Visi & Misi Prodi</span>
+                </a>
             </div>
 
             <!-- Group 4: Layanan & Interaksi -->

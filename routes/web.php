@@ -98,6 +98,8 @@ Route::prefix('admin')->name('admin.')->group(function () {
         */
         Route::get('/settings', [SettingController::class, 'index'])->name('settings.index');
         Route::post('/settings', [SettingController::class, 'update'])->name('settings.update');
+        Route::get('/visi-misi', [SettingController::class, 'visionMission'])->name('settings.vision-mission');
+        Route::post('/visi-misi', [SettingController::class, 'updateVisionMission'])->name('settings.vision-mission.update');
 
         Route::resource('posts', PostController::class);
         Route::resource('categories', CategoryController::class)->except(['create', 'show', 'edit']);
